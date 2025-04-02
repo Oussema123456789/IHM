@@ -17,7 +17,7 @@ const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'addCategorie', component: AddCategorieComponent },
     { path: 'updateCategorie/:id', component: UpdateCategorieComponent },  { path: 'Categorie', redirectTo: '/Categorie', pathMatch: 'full' },
-
+//ggggggg
 
 
 
