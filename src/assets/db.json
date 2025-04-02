@@ -1,0 +1,124 @@
+{
+  "utilisateurs": [
+    {
+      "id": "1",
+      "email": "admin@example.com",
+      "mdp": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "email": "client@example.com",
+      "mdp": "client123",
+      "role": "client"
+    },
+    {
+      "id": "3",
+      "email": "prestataire@example.com",
+      "mdp": "prestataire123",
+      "role": "prestataire"
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "role": "client"
+    },
+    {
+      "id": "3",
+      "role": "prestataire"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "nomcat": "Informatiquegtgtgtg",
+      "image": "https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+    },
+    {
+      "id": "148c",
+      "nomcat": "aaaaa",
+      "image": "https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+    },
+    {
+      "id": "bae1",
+      "nomcat": "electricité",
+      "image": "https://www.iris-st.org/medias/1/image_2023-01-30_092600455-1024x682.jpg"
+    },
+    {
+      "id": "54dd",
+      "nomcat": "id",
+      "image": "id"
+    },
+    {
+      "id": "",
+      "nomcat": "asssdasaa",
+      "image": "sdqdsqdqsdqsdqsdsq"
+    },
+    {
+      "id": "",
+      "nomcat": "asssdasaa",
+      "image": "sdqdsqdqsdqsdqsdsq"
+    },
+    {
+      "id": "",
+      "nomcat": "hhhhhhhhhhhhhhhhhh",
+      "image": "hhhhhhhhhhhh"
+    },
+    {
+      "id": "",
+      "nomcat": "hhhhhhhhhhhhhhhhhh",
+      "image": "hhhhhhhhhhhh"
+    },
+    {
+      "id": "",
+      "nomcat": "nnnnnnnnnnnnnnnnnnnnnn",
+      "image": "nnnnnnnnnnnnnnnnnnnnnnn"
+    },
+    {
+      "id": "",
+      "nomcat": "fdsfdsfd",
+      "image": "sdfsdfds"
+    },
+    {
+      "id": "",
+      "nomcat": "gggggggggg",
+      "image": "ggggggggggggg"
+    },
+    {
+      "id": "",
+      "nomcat": "vvvvvvvvvvvvvvvv",
+      "image": "vvvvvvvvvvvvvvvvvv"
+    }
+  ],
+  "souscategories": [
+    {
+      "id": "1",
+      "nomscat": "Développement Web",
+      "categorieId": 1
+    }
+  ],
+  "publications": [
+    {
+      "id": "1",
+      "titre": "Site e-commerce",
+      "description": "Création d'un site e-commerce",
+      "prix": 1500,
+      "date_pub": "2024-03-08",
+      "sousCategorieId": 1
+    }
+  ],
+  "avis": [
+    {
+      "id": "1",
+      "clientId": 2,
+      "publicationId": 1,
+      "commentaire": "Très bon service",
+      "note": 5
+    }
+  ]
+}
