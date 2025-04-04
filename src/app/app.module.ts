@@ -9,7 +9,7 @@ import { PostComponent } from './post/post.component';
 import { ListprestataireComponent } from './listprestataire/listprestataire.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddCategorieComponent } from './add-categorie/add-categorie.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateCategorieComponent } from './update-categorie/update-categorie.component';
 import { AdminComponent } from './admin/admin.component';
 import { ClientComponent } from './client/client.component';
@@ -19,7 +19,9 @@ import { RegisterComponent } from './register/register.component';
 import { LeftbarComponent } from './leftbar/leftbar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
-
+import { SousCategorieComponent } from './sous-categorie/sous-categorie.component';
+import { AjouterSousCategorieComponent } from './ajouter-sous-categorie/ajouter-sous-categorie.component';
+import { ModifierSousCategorieComponent } from './modifier-sous-categorie/modifier-sous-categorie.component';
 
 @NgModule({
   declarations: [
@@ -39,12 +41,13 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
   LeftbarComponent,
   NavbarComponent,
   PortfolioComponent,
+  AjouterSousCategorieComponent,  ModifierSousCategorieComponent,SousCategorieComponent
   
 
   ],
   imports: [
     BrowserModule,HttpClientModule,
-    AppRoutingModule,FormsModule,
+    AppRoutingModule,FormsModule,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

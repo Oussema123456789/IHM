@@ -17,6 +17,9 @@ import { ClientGuard } from './gurads/client.guard';
 import { PrestataireGuard } from './gurads/prestataire.guard';
 import { RegisterComponent } from './register/register.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { SousCategorieComponent } from './sous-categorie/sous-categorie.component';
+import { AjouterSousCategorieComponent } from './ajouter-sous-categorie/ajouter-sous-categorie.component';
+import { ModifierSousCategorieComponent } from './modifier-sous-categorie/modifier-sous-categorie.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,7 +30,6 @@ const routes: Routes = [
   { 
     path: 'Categorie', 
     component: CategorieComponent, 
-    canActivate: [AuthGuard, AdminGuard] 
   },
   { 
     path: 'Post', 
@@ -48,12 +50,15 @@ const routes: Routes = [
   { 
     path: 'addCategorie', 
     component: AddCategorieComponent, 
-    canActivate: [AuthGuard, AdminGuard] 
   },
+  { path: 'categories/:id/sous-categories', component: SousCategorieComponent},
+  { path: 'ajouter-sous-categorie', component: AjouterSousCategorieComponent  },
+  { path: 'modifier-sous-categorie/:id', component: ModifierSousCategorieComponent }
+  ,
   { 
     path: 'updateCategorie/:id', 
     component: UpdateCategorieComponent, 
-    canActivate: [AuthGuard, AdminGuard] 
+    
   },
   { 
     path: 'portfolio', 

@@ -15,23 +15,26 @@ export class SousCategorieService {
     return this.http.get<SousCategorie[]>(this.apiUrl);
   }
 
-  getSousCategorieById(id: number): Observable<SousCategorie> {
+  getSousCategorieById(id: string): Observable<SousCategorie> {
     return this.http.get<SousCategorie>(`${this.apiUrl}/${id}`);
   }
 
-  getSousCategoriesByCategorieId(categorieId: number): Observable<SousCategorie[]> {
+  getSousCategoriesByCategorieId(categorieId: string): Observable<SousCategorie[]> {
     return this.http.get<SousCategorie[]>(`${this.apiUrl}?categorieId=${categorieId}`);
   }
+  
+  
 
   ajouterSousCategorie(sousCategorie: SousCategorie): Observable<SousCategorie> {
     return this.http.post<SousCategorie>(this.apiUrl, sousCategorie);
   }
+  
 
   modifierSousCategorie(sousCategorie: SousCategorie): Observable<SousCategorie> {
     return this.http.put<SousCategorie>(`${this.apiUrl}/${sousCategorie.id}`, sousCategorie);
   }
-
-  supprimerSousCategorie(id: number): Observable<void> {
+  supprimerSousCategorie(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+  
 }

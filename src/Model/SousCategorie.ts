@@ -1,5 +1,5 @@
 export interface SousCategorie {
-    id?: number;
-    nomscat: string;
-    categorieId: number;
-  }
+  id?: string;
+  nomscat: string;
+  categorieId: string;
+}

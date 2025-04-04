@@ -6,7 +6,7 @@
     
     <div class="main-wrapper">
 
-        <!-- navigation top-->
+        <!-- navigation top-->  
         <div class="nav-header bg-white shadow-xs border-0">
             <div class="nav-top">
                 <a href="default.html"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">Sociala. </span> </a>
@@ -255,6 +255,12 @@
                                             <a href="#" *ngIf="categorie.id !== undefined" (click)="supprimerCategorie(categorie.id)" class="btn-round-xs bg-red me-1">
                                                 <i class="feather-trash-2 font-xs"></i>
                                             </a>
+                                            <a [routerLink]="['/categories', categorie.id, 'sous-categories']" class="btn btn-info">
+                                                Voir sous-catégories
+                                              </a>
+                                              
+                                              
+                                              
                                         </div>
                                     </div>
                                 </div>

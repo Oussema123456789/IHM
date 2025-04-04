@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Ajouter une Sous-Catégorie</h2>
+  
+    <!-- Message de succès -->
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+  
+    <!-- Message d'erreur -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  
+    <form [formGroup]="sousCategorieForm" (ngSubmit)="ajouterSousCategorie()">
+      <div class="mb-3">
+        <label for="nomscat" class="form-label">Nom de la sous-catégorie</label>
+        <input type="text" id="nomscat" class="form-control" formControlName="nomscat" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="categorieId" class="form-label">Catégorie</label>
+        <select id="categorieId" class="form-control" formControlName="categorieId" required>
+          <option value="" disabled selected>Sélectionner une catégorie</option>
+          <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.nomcat }}</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="sousCategorieForm.invalid">Ajouter</button>
+    </form>
+  </div>
+  
