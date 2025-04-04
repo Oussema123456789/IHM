@@ -16,9 +16,10 @@ export class ProfileService {
   }
 
   // Mettre à jour les informations de l'utilisateur
-  updateProfile(userId: string, profileData: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${userId}`, profileData);
+  updateProfile(userId: string, updatedProfile: any): Observable<any> {
+    return this.http.put(`http://localhost:3000/utilisateurs/${userId}`, updatedProfile);
   }
+  
 
   // Mettre à jour l'avatar de l'utilisateur
   updateAvatar(userId: string, avatarData: any): Observable<any> {

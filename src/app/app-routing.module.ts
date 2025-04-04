@@ -16,6 +16,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ClientGuard } from './gurads/client.guard';
 import { PrestataireGuard } from './gurads/prestataire.guard';
 import { RegisterComponent } from './register/register.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -54,6 +55,12 @@ const routes: Routes = [
     component: UpdateCategorieComponent, 
     canActivate: [AuthGuard, AdminGuard] 
   },
+  { 
+    path: 'portfolio', 
+    component: PortfolioComponent, 
+    canActivate: [AuthGuard, PrestataireGuard] 
+  },
+
 
   // Routes spécifiques aux rôles
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard] },

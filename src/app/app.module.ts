@@ -18,6 +18,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { RegisterComponent } from './register/register.component';
 import { LeftbarComponent } from './leftbar/leftbar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   RegisterComponent,
   LeftbarComponent,
   NavbarComponent,
+  PortfolioComponent,
   
 
   ],
