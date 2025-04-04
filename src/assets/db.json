@@ -17,6 +17,58 @@
       "email": "prestataire@example.com",
       "mdp": "prestataire123",
       "role": "prestataire"
+    },
+    {
+      "id": "64c6",
+      "email": "ousema@gmail.com",
+      "password": "ousema",
+      "role": "prestataire"
+    },
+    {
+      "id": "076e",
+      "email": "achraf@gmail.com",
+      "password": "achraf123",
+      "role": "client"
+    },
+    {
+      "id": "6b61",
+      "email": "amir@gmail.com",
+      "password": "amir",
+      "role": "client",
+      "nom": "amir",
+      "phone": "+21650688014",
+      "address": "3052",
+      "city": "Sfax"
+    },
+    {
+      "id": "4f96",
+      "email": "fedi@gmail.com",
+      "password": "fedi",
+      "role": "prestataire",
+      "nom": "fedi",
+      "phone": "+21650688014",
+      "address": "dqsdsqd",
+      "city": "dsqdsqd"
+    },
+    {
+      "id": "0132",
+      "email": "mohsen@gmail.com",
+      "password": "mohsen",
+      "role": "client",
+      "nom": "mohsenasbewi",
+      "phone": "50688014",
+      "address": "dsaasda",
+      "city": "dsqdsqd"
+    }
+  ],
+  "profiles": [
+    {
+      "userId": "64c6",
+      "nom": "ousema",
+      "image": "https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D",
+      "adresse": "123 Admin Street",
+      "numTel": "123-456-7890",
+      "id": "b202"
     }
   ],
   "roles": [

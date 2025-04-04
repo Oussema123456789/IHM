@@ -11,6 +11,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddCategorieComponent } from './add-categorie/add-categorie.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateCategorieComponent } from './update-categorie/update-categorie.component';
+import { AdminComponent } from './admin/admin.component';
+import { ClientComponent } from './client/client.component';
+import { PrestataireComponent } from './prestataire/prestataire.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { RegisterComponent } from './register/register.component';
+import { LeftbarComponent } from './leftbar/leftbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -21,12 +29,20 @@ import { UpdateCategorieComponent } from './update-categorie/update-categorie.co
     ListprestataireComponent,
     ProfileComponent,
   AddCategorieComponent,
-  UpdateCategorieComponent
+  UpdateCategorieComponent,
+  AdminComponent,
+  ClientComponent,
+  PrestataireComponent,
+  UnauthorizedComponent,
+  RegisterComponent,
+  LeftbarComponent,
+  NavbarComponent,
+  
 
   ],
   imports: [
     BrowserModule,HttpClientModule,
-    AppRoutingModule,FormsModule
+    AppRoutingModule,FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
