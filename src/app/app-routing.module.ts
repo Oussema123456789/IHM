@@ -20,6 +20,8 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { SousCategorieComponent } from './sous-categorie/sous-categorie.component';
 import { AjouterSousCategorieComponent } from './ajouter-sous-categorie/ajouter-sous-categorie.component';
 import { ModifierSousCategorieComponent } from './modifier-sous-categorie/modifier-sous-categorie.component';
+import { AjouterPublicationComponent } from './ajouter-publication/ajouter-publication.component';
+import { PostviewComponent } from './postview/postview.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -46,6 +48,10 @@ const routes: Routes = [
     component: ProfileComponent, 
     canActivate: [AuthGuard, PrestataireGuard] 
   },
+  {
+    path: 'ajouter-publication/:id',  // :id permet de capturer l'ID du prestataire
+    component: AjouterPublicationComponent,
+  },
   { path: 'profile/:id', component: ProfileComponent },
   { 
     path: 'addCategorie', 
@@ -65,6 +71,11 @@ const routes: Routes = [
     component: PortfolioComponent, 
     canActivate: [AuthGuard, PrestataireGuard] 
   },
+  { 
+    path: 'Postview', 
+    component: PostviewComponent, 
+  },
+
 
 
   // Routes spécifiques aux rôles

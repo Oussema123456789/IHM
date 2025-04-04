@@ -66,9 +66,27 @@
       }
     },
     {
-      "id": "6aa8",
-      "description": "oussema",
-      "imageUrl": "https://res.cloudinary.com/iset-sfax/image/upload/v1743781985/images/jxjcivdfkykuxn4wyfxg.png"
+      "id": "0ffe",
+      "email": "melek@gmail.com",
+      "password": "",
+      "role": "client"
+    },
+    {
+      "id": "9588",
+      "email": "melek@gmail.com",
+      "password": "123",
+      "role": "prestataire"
+    },
+    {
+      "id": "1f7b",
+      "email": "fediasbewi@gmail.com",
+      "password": "123",
+      "role": "prestataire",
+      "nom": "fedi",
+      "phone": "50688014114",
+      "address": "dqsdqsdqs",
+      "city": "sqqsdqsdqs",
+      "avatarUrl": "https://res.cloudinary.com/iset-sfax/image/upload/v1743791590/images/kxhupan0waph7ixp516e.png"
     }
   ],
   "profiles": [
@@ -162,16 +180,63 @@
       "id": "1",
       "nomscat": "Développement Web",
       "categorieId": 1
+    },
+    {
+      "id": "fe27",
+      "nomscat": "3asba",
+      "categorieId": "1"
     }
   ],
   "publications": [
     {
-      "id": "1",
-      "titre": "Site e-commerce",
-      "description": "Création d'un site e-commerce",
-      "prix": 1500,
-      "date_pub": "2024-03-08",
-      "sousCategorieId": 1
+      "id": "af4c15fe-bdcb-4739-8b36-496d770321fd",
+      "titre": "travail",
+      "description": "dedadsaasda",
+      "prix": 150,
+      "date_pub": "2001-10-19",
+      "sousCategorieId": "1",
+      "prestataireId": "0132",
+      "statut": "inactive"
+    },
+    {
+      "id": "8a5d1726-cd43-4f40-ab01-659546d2f483",
+      "titre": "dfqfdf",
+      "description": "fdqfdqfqd",
+      "prix": 10000,
+      "date_pub": "2025-10-19",
+      "sousCategorieId": "1",
+      "prestataireId": "0132",
+      "statut": "inactive"
+    },
+    {
+      "id": "96cccf2b-4162-4048-9935-4b433d56ca85",
+      "titre": "dsqdqsd",
+      "description": "dsqdsqdqs",
+      "prix": 10000,
+      "date_pub": "2025-04-04",
+      "sousCategorieId": "1",
+      "prestataireId": "0132",
+      "statut": "inactive"
+    },
+    {
+      "id": "3489947a-66a7-4be4-add1-969385aa8fe7",
+      "titre": "3asba",
+      "description": "3asba 3asba ",
+      "prix": 1000,
+      "date_pub": "2025-04-04",
+      "sousCategorieId": "fe27",
+      "prestataireId": "0132",
+      "statut": "inactive"
+    },
+    {
+      "id": "a9242c41-d504-4054-abe0-8e8f5441623f",
+      "titre": "3assbewiiiiiiiiiii",
+      "description": "asssilllllllllllllllllllllllllll",
+      "prix": 122,
+      "date_pub": "2025-04-04",
+      "sousCategorieId": "fe27",
+      "prestataireId": "1f7b",
+      "statut": "inactive"
     }
   ],
   "portfolio": [

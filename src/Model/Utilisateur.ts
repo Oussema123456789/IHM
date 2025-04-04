@@ -3,4 +3,8 @@ export interface Utilisateur {
     email: string;
     mdp: string;
     role: string;
+    nom?: string;
+    avatarUrl?: string;
+    
+
   }

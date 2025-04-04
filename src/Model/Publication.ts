@@ -1,8 +1,10 @@
 export interface Publication {
-    id?: number;
-    titre: string;
-    description: string;
-    prix: number;
-    date_pub: string;
-    sousCategorieId: number;
-  }
+  id?: string;
+  titre: string;
+  description: string;
+  prix: number;
+  date_pub: string;
+  sousCategorieId: string;
+  prestataireId: string;
+  statut: string;
+}

@@ -22,9 +22,11 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { SousCategorieComponent } from './sous-categorie/sous-categorie.component';
 import { AjouterSousCategorieComponent } from './ajouter-sous-categorie/ajouter-sous-categorie.component';
 import { ModifierSousCategorieComponent } from './modifier-sous-categorie/modifier-sous-categorie.component';
-
+import { AjouterPublicationComponent } from './ajouter-publication/ajouter-publication.component';
+import { PostviewComponent } from './postview/postview.component';
 @NgModule({
   declarations: [
+    AjouterPublicationComponent,
     AppComponent,
     LoginComponent,
     CategorieComponent,
@@ -41,7 +43,7 @@ import { ModifierSousCategorieComponent } from './modifier-sous-categorie/modifi
   LeftbarComponent,
   NavbarComponent,
   PortfolioComponent,
-  AjouterSousCategorieComponent,  ModifierSousCategorieComponent,SousCategorieComponent
+  AjouterSousCategorieComponent,  ModifierSousCategorieComponent,SousCategorieComponent, PostviewComponent
   
 
   ],
