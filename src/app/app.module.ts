@@ -24,6 +24,7 @@ import { AjouterSousCategorieComponent } from './ajouter-sous-categorie/ajouter-
 import { ModifierSousCategorieComponent } from './modifier-sous-categorie/modifier-sous-categorie.component';
 import { AjouterPublicationComponent } from './ajouter-publication/ajouter-publication.component';
 import { PostviewComponent } from './postview/postview.component';
+import { ModifierPublicationComponent } from './modifier-publication/modifier-publication.component';
 @NgModule({
   declarations: [
     AjouterPublicationComponent,
@@ -43,7 +44,7 @@ import { PostviewComponent } from './postview/postview.component';
   LeftbarComponent,
   NavbarComponent,
   PortfolioComponent,
-  AjouterSousCategorieComponent,  ModifierSousCategorieComponent,SousCategorieComponent, PostviewComponent
+  AjouterSousCategorieComponent,  ModifierSousCategorieComponent,SousCategorieComponent, PostviewComponent, ModifierPublicationComponent
   
 
   ],

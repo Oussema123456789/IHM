@@ -1,7 +1,7 @@
 <!-- main content -->
 <app-navbar></app-navbar>
 <app-leftbar></app-leftbar>
-<app-ajouter-publication></app-ajouter-publication>
+<app-ajouter-publication *ngIf="isPrestataire"></app-ajouter-publication>
 
 <div class="main-content right-chat-active">
   <div class="middle-sidebar-bottom">
@@ -33,9 +33,24 @@
               {{ publication.date_pub | date:'short' }}
             </span>
           </h4>
-          <a href="#" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i>
-          </a>
+          <!-- Dropdown pour les options Modifier et Supprimer -->
+          <div *ngIf="isMyPublication(publication)" class="ms-auto dropdown">
+            <a href="#" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li>
+                <a class="dropdown-item"  (click)="publication.id ? modifierPublication(publication.id) : null">
+                  Modifier
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item"  (click)="publication.id ? supprimerPublication(publication.id) : null">
+                  Supprimer
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="card-body p-0 me-lg-5">
           <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">

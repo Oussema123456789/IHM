@@ -15,7 +15,7 @@ export class PublicationService {
     return this.http.get<Publication[]>(this.apiUrl);
   }
 
-  getPublicationById(id: number): Observable<Publication> {
+  getPublicationById(id: string): Observable<Publication> {
     return this.http.get<Publication>(`${this.apiUrl}/${id}`);
   }
 

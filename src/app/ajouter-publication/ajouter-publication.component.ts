@@ -33,6 +33,7 @@ export class AjouterPublicationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     // Initialisation de la date de publication avec la date d'aujourd'hui
     const today = new Date();
     this.publication.date_pub = today.toISOString().split('T')[0]; // Format YYYY-MM-DD
@@ -66,7 +67,7 @@ export class AjouterPublicationComponent implements OnInit {
     this.publicationService.ajouterPublication(this.publication).subscribe(
       (response) => {
         console.log('Publication ajoutée', response);
-        this.router.navigate(['/prestataire']);
+        this.router.navigate(['/Postview']); // Rediriger vers la page de visualisation des publications
       },
       (error) => {
         console.error("Erreur lors de l'ajout de la publication", error);

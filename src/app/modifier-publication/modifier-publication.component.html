@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+<app-leftbar></app-leftbar>
+<div class="main-content right-chat-active">
+    <div class="middle-sidebar-bottom">
+      <div class="middle-sidebar-left">
+        <div class="row feed-body">
+          <div class="col-xl-8 col-xxl-9 col-lg-8">
+            <!-- Card de formulaire de modification de publication -->
+            <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
+              <div class="card-body p-0">
+                <a href="#" class="font-xssss fw-600 text-grey-500 card-body p-0 d-flex align-items-center">
+                  <i class="btn-round-sm font-xs text-primary feather-edit-3 me-2 bg-greylight"></i> Modifier la Publication
+                </a>
+              </div>
+  
+              <form (ngSubmit)="modifierPublication()">
+                <div class="card-body p-0 mt-3 position-relative">
+                  <textarea name="description" 
+                            class="h100 bor-0 w-100 rounded-xxl p-2 ps-5 font-xssss text-grey-500 fw-500 border-light-md theme-dark-bg" 
+                            cols="30" rows="5" 
+                            placeholder="Décrivez votre publication..."
+                            [(ngModel)]="publication.description" 
+                            required>
+                  </textarea>
+                </div>
+  
+                <div class="card-body p-0 mt-3">
+                  <input type="text" 
+                         class="form-control mb-3 font-xssss fw-500 border-light-md theme-dark-bg" 
+                         placeholder="Titre de la publication" 
+                         [(ngModel)]="publication.titre" 
+                         name="titre" 
+                         required>
+                  <input type="number" 
+                         class="form-control mb-3 font-xssss fw-500 border-light-md theme-dark-bg" 
+                         placeholder="Prix" 
+                         [(ngModel)]="publication.prix" 
+                         name="prix" 
+                         required>
+                  <select class="form-control mb-3 font-xssss fw-500 border-light-md theme-dark-bg" 
+                          [(ngModel)]="selectedSousCategorie" 
+                          name="sousCategorie" 
+                          required>
+                    <option value="">Sélectionner une sous-catégorie</option>
+                    <option *ngFor="let sousCategorie of sousCategories" [value]="sousCategorie.nomscat">
+                      {{ sousCategorie.nomscat }}
+                    </option>
+                  </select>
+                </div>
+  
+                <div class="card-body p-0 mt-2 d-flex justify-content-end">
+                  <button type="submit" 
+                          class="bg-primary text-white font-xssss fw-600 px-4 py-2 rounded-3 border-0">
+                    Modifier
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- main content -->
+  

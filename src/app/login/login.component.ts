@@ -20,9 +20,9 @@ export class LoginComponent {
         if (user.role === 'admin') {
           this.router.navigate(['/admin']);
         } else if (user.role === 'client') {
-          this.router.navigate(['/client']);
+          this.router.navigate(['/Postview']);
         } else {
-          this.router.navigate(['/prestataire']);
+          this.router.navigate(['/Postview']);
         }
       },
       error => {

@@ -22,6 +22,7 @@ import { AjouterSousCategorieComponent } from './ajouter-sous-categorie/ajouter-
 import { ModifierSousCategorieComponent } from './modifier-sous-categorie/modifier-sous-categorie.component';
 import { AjouterPublicationComponent } from './ajouter-publication/ajouter-publication.component';
 import { PostviewComponent } from './postview/postview.component';
+import { ModifierPublicationComponent } from './modifier-publication/modifier-publication.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -74,6 +75,9 @@ const routes: Routes = [
   { 
     path: 'Postview', 
     component: PostviewComponent, 
+  }, { 
+    path: 'modifier-publication/:id', 
+    component: ModifierPublicationComponent, 
   },
 
 
