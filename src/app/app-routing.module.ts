@@ -23,6 +23,7 @@ import { ModifierSousCategorieComponent } from './modifier-sous-categorie/modifi
 import { AjouterPublicationComponent } from './ajouter-publication/ajouter-publication.component';
 import { PostviewComponent } from './postview/postview.component';
 import { ModifierPublicationComponent } from './modifier-publication/modifier-publication.component';
+import { AdminValidationsComponent } from './admin-validations/admin-validations.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -79,7 +80,20 @@ const routes: Routes = [
     path: 'modifier-publication/:id', 
     component: ModifierPublicationComponent, 
   },
+   { 
+    path: 'admin-validations', 
+    component: AdminValidationsComponent, 
+  },
+  
+   { 
+    path: 'admin-validations/:id', 
+    component: AdminValidationsComponent, 
+  },
 
+
+
+
+  
 
 
   // Routes spécifiques aux rôles

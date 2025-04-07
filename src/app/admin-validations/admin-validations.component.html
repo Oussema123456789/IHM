@@ -1,0 +1,29 @@
+<div class="container mt-4">
+    <h2>Validations des publications</h2>
+  
+    <div *ngIf="isLoading" class="text-center mt-4">
+      <p>Chargement des publications en attente...</p>
+    </div>
+  
+    <div *ngIf="!isLoading && publicationsEnAttente.length === 0" class="alert alert-info mt-4">
+      Aucune publication en attente de validation.
+    </div>
+  
+    <div *ngFor="let pub of publicationsEnAttente" class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ pub.titre }}</h5>
+        <p class="card-text">
+          <strong>Description :</strong> {{ pub.description }}<br>
+          <strong>Prix :</strong> {{ pub.prix }} TND<br>
+          <strong>Date :</strong> {{ pub.date_pub | date:'short' }}<br>
+          <strong>Sous-catégorie :</strong> {{ pub.sousCategorieId }}
+        </p>
+  
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-success me-2" (click)="accepterPublication(pub)">Accepter</button>
+          <button class="btn btn-danger" (click)="refuserPublication(pub)">Refuser</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

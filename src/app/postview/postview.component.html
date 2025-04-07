@@ -1,4 +1,3 @@
-<!-- main content -->
 <app-navbar></app-navbar>
 <app-leftbar></app-leftbar>
 <app-ajouter-publication *ngIf="isPrestataire"></app-ajouter-publication>
@@ -6,7 +5,42 @@
 <div class="main-content right-chat-active">
   <div class="middle-sidebar-bottom">
     <div class="middle-sidebar-left">
-      <!-- Loader while data is loading -->
+
+      <!-- Barre de recherche simple -->
+      <div class="card w-100 p-3 mb-4 shadow-xs border rounded">
+        <input type="text" class="form-control" placeholder="Recherche simple" [(ngModel)]="searchTerm">
+      </div>
+
+      <!-- Barre de recherche avancée -->
+      <div class="card w-100 p-4 mb-4 shadow-xs border rounded">
+        <h5>Recherche avancée</h5>
+        <div class="row">
+          <div class="col-md-4 mb-2">
+            <label>Prestataire</label>
+            <select class="form-control" [(ngModel)]="filter.prestataireId">
+              <option value="">Tous</option>
+              <option *ngFor="let u of prestataires" [value]="u.id">{{ u.nom }}</option>
+            </select>
+          </div>
+          <div class="col-md-4 mb-2">
+            <label>Sous-catégorie</label>
+            <select class="form-control" [(ngModel)]="filter.sousCategorieId">
+              <option value="">Toutes</option>
+              <option *ngFor="let sc of sousCategories" [value]="sc.id">{{ sc.nomscat }}</option>
+            </select>
+          </div>
+          <div class="col-md-2 mb-2">
+            <label>Prix min</label>
+            <input type="number" class="form-control" [(ngModel)]="filter.prixMin">
+          </div>
+          <div class="col-md-2 mb-2">
+            <label>Prix max</label>
+            <input type="number" class="form-control" [(ngModel)]="filter.prixMax">
+          </div>
+        </div>
+      </div>
+
+      <!-- Loader -->
       <div class="preloader-wrap p-3" *ngIf="isLoading">
         <div class="box shimmer">
           <div class="lines">
@@ -18,50 +52,90 @@
         </div>
       </div>
 
-      <!-- Display all publications -->
-      <div *ngFor="let publication of publications" class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
+      <!-- Affichage des publications -->
+      <div *ngFor="let publication of filteredPublications()" class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
         <div class="card-body p-0 d-flex">
-          <!-- Avatar and name of the prestataire -->
           <figure class="avatar me-3">
             <img *ngIf="getPrestataireById(publication.prestataireId)" 
-                 [src]="getPrestataireById(publication.prestataireId)?.avatarUrl" 
-                 alt="avatar" class="shadow-sm rounded-circle w45">
+                [src]="getPrestataireById(publication.prestataireId)?.avatarUrl" 
+                alt="avatar" class="shadow-sm rounded-circle w45">
           </figure>
           <h4 class="fw-700 text-grey-900 font-xssss mt-1">
-            {{ getPrestataireById(publication.prestataireId)?.nom }} 
+            {{ getPrestataireById(publication.prestataireId)?.nom }}
             <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">
               {{ publication.date_pub | date:'short' }}
             </span>
           </h4>
-          <!-- Dropdown pour les options Modifier et Supprimer -->
+
+          <!-- Actions pour prestataire -->
           <div *ngIf="isMyPublication(publication)" class="ms-auto dropdown">
             <a href="#" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li>
-                <a class="dropdown-item"  (click)="publication.id ? modifierPublication(publication.id) : null">
-                  Modifier
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item"  (click)="publication.id ? supprimerPublication(publication.id) : null">
-                  Supprimer
-                </a>
-              </li>
+              <li><a class="dropdown-item" (click)="publication.id && modifierPublication(publication.id)">Modifier</a></li>
+              <li><a class="dropdown-item" (click)="publication.id && supprimerPublication(publication.id)">Supprimer</a></li>
             </ul>
           </div>
+
+          <!-- Validation par admin -->
+          <div *ngIf="isAdmin && publication.statut === 'en_attente'" class="ms-auto">
+            <button *ngIf="publication.id" (click)="validerPublication(publication.id)" class="btn btn-success">Valider</button>
+          </div>
         </div>
+
         <div class="card-body p-0 me-lg-5">
           <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">
-            {{ publication.description }} 
-            <br>
-            <strong>Prix: </strong>{{ publication.prix }} TND
-            <br>
+            {{ publication.description }}<br>
+            <strong>Prix: </strong>{{ publication.prix }} TND<br>
             <strong>Sous-catégorie: </strong>{{ getSousCategorieById(publication.sousCategorieId) }}
           </p>
         </div>
 
+        <!-- Partie client : avis/commentaire -->
+        <div class="card-body d-flex p-0 mt-3">
+          <div *ngIf="isClient">
+            <a class="d-flex align-items-center fw-600 text-grey-900 lh-26 font-xssss"
+              (click)="commentaireAvis[publication.id!] = commentaireAvis[publication.id!] ?? ''; selectedNote[publication.id!] = selectedNote[publication.id!] ?? 0">
+              <i class="feather-message-circle text-dark btn-round-sm font-lg me-2"></i>
+              {{ commentaireAvis[publication.id!] ? 'Modifier le commentaire' : 'Écrire un commentaire' }}
+            </a>
+          </div>
+        </div>
+        <div *ngIf="publication.id" class="mt-3">
+          <h5>Commentaires</h5>
+          <div *ngFor="let avis of getAvisByPublication(publication.id)">
+            <div class="d-flex align-items-center">
+              <span class="fw-600">{{ getUtilisateurById(avis.id_user)?.nom }}</span>
+              <span class="text-grey-500 ms-2">{{ avis.commentaire }}</span>
+              <span class="text-warning ms-2">
+                <i class="fa fa-star" *ngFor="let star of [1,2,3,4,5]" [ngClass]="{'text-warning': star <= avis.note}"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body d-flex p-0 mt-3" *ngIf="commentaireAvis[publication.id!] !== undefined">
+          <div class="w-100">
+            <textarea [(ngModel)]="commentaireAvis[publication.id!]" class="form-control mb-2" rows="2"
+              placeholder="Votre commentaire..."></textarea>
+            <button class="btn btn-sm btn-primary" (click)="enregistrerAvis(publication.id!)" *ngIf="isClient">
+              Envoyer l’avis
+            </button>
+
+            <div class="mt-2">
+              <ng-container *ngFor="let star of [1,2,3,4,5]">
+                <i class="fa"
+                  [ngClass]="{
+                    'fa-star text-warning': selectedNote[publication.id!] >= star,
+                    'fa-star-o text-secondary': selectedNote[publication.id!] < star
+                  }"
+                  style="cursor: pointer;" (click)="selectedNote[publication.id!] = star"></i>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <!-- Réactions (non liés aux avis) -->
         <div class="card-body d-flex p-0 mt-3">
           <a href="#" class="emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2">
             <i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> 
@@ -80,12 +154,9 @@
               <li class="emoji list-inline-item"><i class="em em-full_moon_with_face"></i></li>
             </ul>
           </div>
-          <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss">
-            <i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i>
-            <span class="d-none-xss">22 Comment</span>
-          </a>
         </div>
       </div>
-    </div> 
+
+    </div>
   </div>
 </div>

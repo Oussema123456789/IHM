@@ -53,7 +53,8 @@
       "nom": "fedi",
       "phone": "+21650688014",
       "address": "dqsdsqd",
-      "city": "dsqdsqd"
+      "city": "dsqdsqd",
+      "avatarUrl": "https://res.cloudinary.com/iset-sfax/image/upload/v1743858846/images/hwlcujyont6o3xyoi5q2.png"
     },
     {
       "id": "0132",
@@ -242,7 +243,7 @@
       "date_pub": "2025-04-05",
       "sousCategorieId": "1",
       "prestataireId": "1f7b",
-      "statut": "inactive"
+      "statut": "refusee"
     },
     {
       "id": "64124c9a-310c-48a4-9df4-4dc29aef3ef2",
@@ -252,7 +253,117 @@
       "date_pub": "2025-04-05",
       "sousCategorieId": "1",
       "prestataireId": "4f96",
-      "statut": "inactive"
+      "statut": "refusee"
+    },
+    {
+      "id": "2214e827-7255-4888-8dc3-e116d1353833",
+      "titre": "dadsadas",
+      "description": "adssadaads",
+      "prix": 1500,
+      "date_pub": "2025-04-05",
+      "sousCategorieId": "1",
+      "prestataireId": "4f96",
+      "statut": "active"
+    },
+    {
+      "id": "6c698730-0b12-4bfb-89f7-00c8e4b6798d",
+      "titre": "oussema",
+      "description": "dsqdqsdqsdq",
+      "prix": 1555,
+      "date_pub": "2025-04-05",
+      "sousCategorieId": "1",
+      "prestataireId": "4f96",
+      "statut": "active"
+    },
+    {
+      "id": "463aaaa3-1617-49d6-bf0e-c4abcb8f551d",
+      "titre": "qsqsdqsd",
+      "description": "mohsennnnnnnnnnnnn",
+      "prix": 15555,
+      "date_pub": "2025-04-05",
+      "sousCategorieId": "fe27",
+      "prestataireId": "0132",
+      "statut": "refusee"
+    },
+    {
+      "id": "c62bba88-d8bd-443c-bbc9-d6f45353ccea",
+      "titre": "dsqdqsd",
+      "description": "fdqfdfdq",
+      "prix": 15000,
+      "date_pub": "2025-04-05",
+      "sousCategorieId": "1",
+      "prestataireId": "4f96",
+      "statut": "active"
+    },
+    {
+      "id": "a1ced3d5-c151-4ea0-89c3-4299ab00c72f",
+      "titre": "sdfdfsd",
+      "description": "fdfdfdf",
+      "prix": 1500,
+      "date_pub": "2025-04-05",
+      "sousCategorieId": "1",
+      "prestataireId": "4f96",
+      "statut": "active"
+    },
+    {
+      "id": "94656437-51fe-4446-83d8-9ee6608bf25e",
+      "titre": "ddfsdfs",
+      "description": "fdsfsdfsd",
+      "prix": 1500,
+      "date_pub": "2025-04-05",
+      "sousCategorieId": "1",
+      "prestataireId": "4f96",
+      "statut": "active"
+    },
+    {
+      "id": "c94630e7-2e31-4977-9dd2-9deba3aa0aa8",
+      "titre": "fdsfsdfs",
+      "description": "dfgdfgdfg",
+      "prix": 1555,
+      "date_pub": "2025-04-05",
+      "sousCategorieId": "1",
+      "prestataireId": "4f96",
+      "statut": "active"
+    },
+    {
+      "id": "26a571c4-48e2-45b0-8763-539fd034f396",
+      "titre": "fsdfdsf",
+      "description": "fdsfsdf",
+      "prix": 1500,
+      "date_pub": "2025-04-05",
+      "sousCategorieId": "fe27",
+      "prestataireId": "4f96",
+      "statut": "en_attente"
+    },
+    {
+      "id": "f7553656-d4e9-4bef-bc05-c701c30250cd",
+      "titre": "dsf",
+      "description": "fdsfsdfds",
+      "prix": 111,
+      "date_pub": "2025-04-05",
+      "sousCategorieId": "1",
+      "prestataireId": "4f96",
+      "statut": "en_attente"
+    },
+    {
+      "id": "f188eaea-e8b8-479d-a060-78e7a9d8ece1",
+      "titre": "ggfg",
+      "description": "fhhfhf",
+      "prix": 4444,
+      "date_pub": "2025-04-05",
+      "sousCategorieId": "1",
+      "prestataireId": "4f96",
+      "statut": "en_attente"
+    },
+    {
+      "id": "6ae33806-4f1f-49d0-837f-bdaff4359af3",
+      "titre": "aaaaaaaaaaaaaaaa",
+      "description": "aaaaaaaaaaaaaaaaaaaa",
+      "prix": 0,
+      "date_pub": "2025-04-05",
+      "sousCategorieId": "1",
+      "prestataireId": "4f96",
+      "statut": "active"
     }
   ],
   "portfolio": [
@@ -274,6 +385,102 @@
       "publicationId": 1,
       "commentaire": "Très bon service",
       "note": 5
+    },
+    {
+      "id": "23c1",
+      "id_user": "d728",
+      "id_publication": "2214e827-7255-4888-8dc3-e116d1353833",
+      "note": 0,
+      "commentaire": "3asba\n"
+    },
+    {
+      "id": "a3e7",
+      "id_user": "d728",
+      "id_publication": "2214e827-7255-4888-8dc3-e116d1353833",
+      "note": 0,
+      "commentaire": "zebbii"
+    },
+    {
+      "id": "95f5",
+      "id_user": "d728",
+      "id_publication": "6c698730-0b12-4bfb-89f7-00c8e4b6798d",
+      "note": 0,
+      "commentaire": "aloo"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "userId": "f5dsf",
+      "type": "post_en_attente",
+      "message": "Une publication est en attente de validation.",
+      "postId": "c62bba88-d8bd-443c-bbc9-d6f45353ccea",
+      "url": "/admin-validation/c62bba88-d8bd-443c-bbc9-d6f45353ccea"
+    },
+    {
+      "id": "2",
+      "userId": "4f96",
+      "type": "post_en_attente",
+      "message": "Votre publication 'dsqdqsd' est en attente de validation.",
+      "postId": "c62bba88-d8bd-443c-bbc9-d6f45353ccea",
+      "url": "/publication-detail/c62bba88-d8bd-443c-bbc9-d6f45353ccea"
+    },
+    {
+      "id": "3",
+      "userId": "4f96",
+      "type": "post_refuse",
+      "message": "Votre publication 'dsqdqsdqs' a été rejetée.",
+      "postId": "463aaaa3-1617-49d6-bf0e-c4abcb8f551d",
+      "url": "/publication-detail/463aaaa3-1617-49d6-bf0e-c4abcb8f551d"
+    },
+    {
+      "id": "34c6",
+      "userId": "admin_id",
+      "message": "Nouvelle publication en attente de validation : fdsfsdfs",
+      "type": "validation",
+      "publicationId": "c94630e7-2e31-4977-9dd2-9deba3aa0aa8"
+    },
+    {
+      "id": "3568",
+      "userId": "4f96",
+      "message": "Votre publication \"fdsfsdfs\" a été validée par l'administrateur.",
+      "type": "validation",
+      "publicationId": "c94630e7-2e31-4977-9dd2-9deba3aa0aa8"
+    },
+    {
+      "id": "a291",
+      "userId": "4f96",
+      "message": "Votre publication \"ddfsdfs\" a été validée par l'administrateur.",
+      "type": "validation",
+      "publicationId": "94656437-51fe-4446-83d8-9ee6608bf25e"
+    },
+    {
+      "id": "26e1",
+      "userId": "4f96",
+      "message": "Votre publication \"sdfdfsd\" a été validée par l'administrateur.",
+      "type": "validation",
+      "publicationId": "a1ced3d5-c151-4ea0-89c3-4299ab00c72f"
+    },
+    {
+      "id": "b926",
+      "userId": "4f96",
+      "message": "Votre publication \"dsqdqsd\" a été validée par l'administrateur.",
+      "type": "validation",
+      "publicationId": "c62bba88-d8bd-443c-bbc9-d6f45353ccea"
+    },
+    {
+      "id": "a49a",
+      "message": "Une nouvelle publication a été ajoutée par 4f96. Elle attend la validation de l'administrateur.",
+      "type": "validation",
+      "publicationId": "26a571c4-48e2-45b0-8763-539fd034f396",
+      "userId": "admin"
+    },
+    {
+      "id": "b34a",
+      "userId": "4f96",
+      "message": "Votre publication \"aaaaaaaaaaaaaaaa\" a été validée par l'administrateur.",
+      "type": "validation",
+      "publicationId": "6ae33806-4f1f-49d0-837f-bdaff4359af3"
     }
   ]
 }

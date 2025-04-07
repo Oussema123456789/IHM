@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PublicationService } from 'src/Service/publication.service';
+import { NotificationService } from 'src/Service/notif.service';  // Service de notification
 import { Publication } from 'src/Model/Publication';
 import { SousCategorie } from 'src/Model/SousCategorie';
 import { SousCategorieService } from 'src/Service/souscategorie.service';
-import { v4 as uuidv4 } from 'uuid'; // Importer uuid pour générer des ID uniques
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-ajouter-publication',
@@ -13,35 +14,37 @@ import { v4 as uuidv4 } from 'uuid'; // Importer uuid pour générer des ID uniq
 })
 export class AjouterPublicationComponent implements OnInit {
   publication: Publication = {
-    id: '',  // L'ID sera généré dynamiquement
+    id: '',
     titre: '',
     description: '',
     prix: 0,
-    date_pub: '',  // À initialiser avec la date actuelle
+    date_pub: '',
     sousCategorieId: '',
     prestataireId: '',
-    statut: 'inactive' // Statut "inactive" par défaut
+    statut: 'en_attente' // ✅ La publication est en attente de validation
   };
 
   sousCategories: SousCategorie[] = [];
   selectedSousCategorie: string = '';
+  isPrestataire: boolean = false;
 
   constructor(
     private publicationService: PublicationService,
     private sousCategorieService: SousCategorieService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService // Injecter le service de notification
   ) {}
 
   ngOnInit(): void {
-    
-    // Initialisation de la date de publication avec la date d'aujourd'hui
     const today = new Date();
-    this.publication.date_pub = today.toISOString().split('T')[0]; // Format YYYY-MM-DD
+    this.publication.date_pub = today.toISOString().split('T')[0];
 
     const currentUser = JSON.parse(localStorage.getItem('user')!);
-    if (currentUser) {
+    if (currentUser && currentUser.role === 'prestataire') {
+      this.isPrestataire = true;
       this.publication.prestataireId = currentUser.id;
     }
+
     this.loadSousCategories();
   }
 
@@ -62,12 +65,30 @@ export class AjouterPublicationComponent implements OnInit {
       return;
     }
 
-    this.publication.id = uuidv4(); // 🎯 Générer un ID unique avant l'envoi
+    this.publication.id = uuidv4();
 
     this.publicationService.ajouterPublication(this.publication).subscribe(
       (response) => {
-        console.log('Publication ajoutée', response);
-        this.router.navigate(['/Postview']); // Rediriger vers la page de visualisation des publications
+        // Créer une notification pour l'admin après l'ajout de la publication
+        const notification = {
+          message: `Une nouvelle publication a été ajoutée par ${this.publication.prestataireId}. Elle attend la validation de l'administrateur.`,
+          type: 'validation',  // Type de notification
+          publicationId: this.publication.id,  // L'ID de la publication
+          userId: 'admin',  // Vous pouvez ajuster cela selon l'ID de l'admin
+        };
+
+        // Envoyer la notification via le service de notification
+        this.notificationService.createNotification(notification).subscribe(
+          (response) => {
+            console.log('Notification envoyée à l\'admin');
+          },
+          (error) => {
+            console.error('Erreur lors de l\'envoi de la notification', error);
+          }
+        );
+
+        alert("Votre publication a été soumise et attend la validation de l'administrateur.");
+        this.router.navigate(['/Postview']);
       },
       (error) => {
         console.error("Erreur lors de l'ajout de la publication", error);

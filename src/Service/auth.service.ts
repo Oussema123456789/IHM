@@ -41,6 +41,9 @@ export class AuthService {
   getUser(): any {
     return JSON.parse(localStorage.getItem('user')!);
   }
+  getNotifications(userId: string): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:3000/notifications?userId=${userId}`);
+  }
 
   getRole(): string {
     return this.getUser()?.role;

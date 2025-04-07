@@ -20,6 +20,7 @@ export class PublicationService {
   }
 
   ajouterPublication(publication: Publication): Observable<Publication> {
+    publication.statut = 'en_attente'; // Par défaut, on met le statut à "en attente"
     return this.http.post<Publication>(this.apiUrl, publication);
   }
 

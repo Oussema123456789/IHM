@@ -1,36 +1,52 @@
 <div class="nav-header bg-white shadow-xs border-0">
-    <div class="nav-top">
-        <a routerLink="/home">
+    <div class="nav-top d-flex justify-content-between w-100 align-items-center">
+        <!-- Logo -->
+        <a routerLink="/home" class="d-flex align-items-center">
             <i class="feather-zap text-success display1-size me-2 ms-0"></i>
             <span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">IHM</span>
         </a>
-    </div>
-
-    <!-- Recherche -->
-    <form class="float-left header-search">
-        <div class="form-group mb-0 icon-input">
-            <i class="feather-search font-sm text-grey-400"></i>
-            <input type="text" placeholder="Search..." class="bg-grey border-0 lh-32 pt-2 pb-2 ps-5 pe-3 rounded-xl">
+    
+        <!-- Recherche -->
+        <form class="header-search ms-4">
+            <div class="form-group mb-0 icon-input position-relative">
+                <i class="feather-search font-sm text-grey-400 position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                <input type="text" placeholder="Search..." class="bg-grey border-0 lh-32 pt-2 pb-2 ps-5 pe-3 rounded-xl w-100">
+            </div>
+        </form>
+    
+        <!-- Notifications -->
+        <div class="dropdown ms-auto position-relative">
+            <a class="p-2 text-center menu-icon" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="feather-bell font-xl text-current"></i>
+                <!-- Badge de notification rouge si il y a des notifications -->
+                <span *ngIf="notificationsCount > 0" class="badge bg-danger position-absolute top-0 start-100 translate-middle">{{ notificationsCount }}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <!-- Notifications List -->
+                <li *ngFor="let notification of notifications">
+                    <a class="dropdown-item" (click)="redirectToValidation(notification)">
+                        {{ notification.message }}
+                    </a>
+                </li>
+                <!-- No Notifications Available -->
+                <li *ngIf="notifications.length === 0">
+                    <a class="dropdown-item text-muted">Aucune notification</a>
+                </li>
+            </ul>
         </div>
-    </form>
-
-    <!-- Notifications -->
-    <a class="p-2 text-center ms-auto menu-icon">
-        <i class="feather-bell font-xl text-current"></i>
-    </a>
-
-    <!-- Avatar et menu utilisateur -->
-    <div *ngIf="user" class="dropdown ms-3">
-        <a href="#" class="dropdown-toggle d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown">
-            <img [src]="user?.avatarUrl" alt="user" class="w30 h30 rounded">
-
-            <span class="ms-2 fw-600">{{ user.nom }}</span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" [routerLink]="['/profile', user?.id]">Profile</a></li>
-            <li><a class="dropdown-item" routerLink="/settings">Settings</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item text-danger" href="#" (click)="logout()">Logout</a></li>
-        </ul>
+    
+        <!-- Avatar and User Menu -->
+        <div *ngIf="user" class="dropdown ms-3">
+            <a href="#" class="dropdown-toggle d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown">
+                <img [src]="user?.avatarUrl" alt="user" class="w30 h30 rounded">
+                <span class="ms-2 fw-600">{{ user.nom }}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" [routerLink]="['/profile', user?.id]">Profile</a></li>
+                <li><a class="dropdown-item" routerLink="/settings">Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#" (click)="logout()">Logout</a></li>
+            </ul>
+        </div>
     </div>
 </div>
