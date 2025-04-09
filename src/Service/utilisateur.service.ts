@@ -38,7 +38,9 @@ export class UtilisateurService {
     );
   }
   
-  
+  getUserById(userId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${userId}`);
+  }
 
   supprimerUtilisateur(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);

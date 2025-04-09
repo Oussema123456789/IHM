@@ -125,7 +125,15 @@
 </head>
 <body>
 
-  <app-navbar></app-navbar>
+  <header>
+    <div class="logo">🟨 ihm</div>
+
+      
+      <a (click)="redirectToLogin()"class="header-btn d-none d-lg-block bg-dark fw-500 text-white font-xsss p-3 ms-auto w100 text-center lh-20 rounded-xl" data-toggle="modal" data-target="#Modallogin">Login</a>
+    <a (click)="redirectToRegister()" class="header-btn d-none d-lg-block bg-current fw-500 text-white font-xsss p-3 ms-2 w100 text-center lh-20 rounded-xl" data-toggle="modal" data-target="#Modalregister">Register</a>
+
+    
+  </header>
 
   <section class="hero">
     <div class="hero-content">
@@ -185,87 +193,26 @@
     <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
       <!-- Carte 1 -->
       <div  *ngFor="let publication of filteredPublications()"  style="background: white; border-radius: 12px; width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 15px;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <!-- Avatar -->
-          <figure class="avatar">
-            <a [routerLink]="['/userpage', getPrestataireById(publication.prestataireId)?.id]">
-
+        <figure class="avatar me-3">
             <img *ngIf="getPrestataireById(publication.prestataireId)" 
-                 [src]="getPrestataireById(publication.prestataireId)?.avatarUrl" 
-                 alt="avatar" class="shadow-sm rounded-circle" style="width: 45px; height: 45px; object-fit: cover;">
-                </a>
-
-                </figure>
-          
-          <!-- Nom du prestataire -->
-          <strong style="font-weight: bold; color: #3a0ca3;">
-            <a [routerLink]="['/userpage', getPrestataireById(publication.prestataireId)?.id]">
-            </a>
-
-            {{ getPrestataireById(publication.prestataireId)?.nom }}
-          </strong>
-        </div>
+                [src]="getPrestataireById(publication.prestataireId)?.avatarUrl" 
+                alt="avatar" class="shadow-sm rounded-circle w45">
+          </figure> 
           <p>   {{ publication.description }}<br></p>
 
           <strong>Prix: </strong>{{ publication.prix }} TND<br>
             <strong>Sous-catégorie: </strong>{{ getSousCategorieById(publication.sousCategorieId) }}       
           <h4 class="fw-700 text-grey-900 font-xssss mt-1">
+          {{ getPrestataireById(publication.prestataireId)?.nom }}
           <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">
             {{ publication.date_pub | date:'short' }}
           </span>
         </h4>
         <button  (click)="redirectToLogin()" class="bg-current text-white font-xsss p-3 ms-2 w100 text-center lh-20" style="margin-top: 10px; background-color: #fcb900; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;font-weight: 600;">Contacter</button>
-    <!-- Bouton pour ouvrir la modale -->
-<button class="btn btn-outline-secondary mt-2" (click)="ouvrirModal(publication)">
-    💬 Voir les commentaires
-  </button>
-    
-    </div>
+      </div>
   
          </div>
   </section>
-  <!-- Modal des commentaires -->
-<div class="modal-overlay" tabindex="-1" role="dialog" style="background-color: rgba(0,0,0,0.5);" *ngIf="showModal && selectedPublication">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-  
-        <div class="modal-header">
-          <h5 class="modal-title">Commentaires pour le service</h5>
-          <button type="button" class="btn-close" aria-label="Close" (click)="fermerModal()"></button>
-        </div>
-  
-        <div class="modal-body">
-          <!-- Liste des avis -->
-          <div *ngIf="getAvisByPublication(selectedPublication?.id||'').length > 0; else aucunAvis">
-            <div *ngFor="let avis of getAvisByPublication(selectedPublication?.id||'')" class="mb-3 border-bottom pb-2">
-              <img *ngIf="getUtilisateurById(avis.id_user)" 
-              [src]="getUtilisateurById(avis.id_user)?.avatarUrl" 
-              alt="avatar" class="shadow-sm rounded-circle" 
-              style="width: 40px; height: 40px; object-fit: cover;">
-              <strong>{{ getUtilisateurById(avis.id_user)?.nom }}</strong><br>
-              <span>{{ avis.commentaire }}</span><br>
-              <span class="text-warning">
-                <i class="fa fa-star" *ngFor="let star of [1,2,3,4,5]" [ngClass]="{'text-warning': star <= avis.note}"></i>
-              </span>
-            </div>
-          </div>
-          <ng-template #aucunAvis>
-            <p class="text-muted">Aucun commentaire pour le moment.</p>
-          </ng-template>
-  
-          <!-- Ajouter un commentaire -->
-          <hr>
-          <h6 class="mt-3">Ajouter un commentaire</h6>
-          <textarea class="form-control mb-2" rows="2" [(ngModel)]="commentaireAvis[selectedPublication?.id||'']"></textarea>
-          <label>Note :</label>
-          <select class="form-select mb-3 w-25" [(ngModel)]="selectedNote[selectedPublication?.id||'']">
-            <option [value]="i" *ngFor="let i of [1,2,3,4,5]">{{ i }} ⭐</option>
-          </select>
-          <button class="btn btn-primary" (click)="enregistrerAvis(selectedPublication?.id||'')">Envoyer</button>
-        </div>
-      </div>
-    </div>
-  </div>
   
 </body>
 </html>

@@ -24,6 +24,8 @@ import { AjouterPublicationComponent } from './ajouter-publication/ajouter-publi
 import { PostviewComponent } from './postview/postview.component';
 import { ModifierPublicationComponent } from './modifier-publication/modifier-publication.component';
 import { AdminValidationsComponent } from './admin-validations/admin-validations.component';
+import { WelcomeclientComponent } from './welcomeclient/welcomeclient.component';
+import { UserpageComponent } from './userpage/userpage.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -38,7 +40,10 @@ const routes: Routes = [
   { 
     path: 'Post', 
     component: PostComponent, 
-    canActivate: [AuthGuard, AdminGuard] 
+  },
+  { 
+    path: 'userpage/:id', 
+    component: UserpageComponent, 
   },
   { 
     path: 'Listprestataire', 
@@ -89,6 +94,11 @@ const routes: Routes = [
     path: 'admin-validations/:id', 
     component: AdminValidationsComponent, 
   },
+  { 
+    path: 'welcomeclient', 
+    component: WelcomeclientComponent, 
+  },
+
 
 
 

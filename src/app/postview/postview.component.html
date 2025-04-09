@@ -1,5 +1,4 @@
 <app-navbar></app-navbar>
-<app-leftbar></app-leftbar>
 <app-ajouter-publication *ngIf="isPrestataire"></app-ajouter-publication>
 
 <div class="main-content right-chat-active">
@@ -94,7 +93,7 @@
 
         <!-- Partie client : avis/commentaire -->
         <div class="card-body d-flex p-0 mt-3">
-          <div *ngIf="isClient">
+          <div >
             <a class="d-flex align-items-center fw-600 text-grey-900 lh-26 font-xssss"
               (click)="commentaireAvis[publication.id!] = commentaireAvis[publication.id!] ?? ''; selectedNote[publication.id!] = selectedNote[publication.id!] ?? 0">
               <i class="feather-message-circle text-dark btn-round-sm font-lg me-2"></i>
@@ -118,7 +117,7 @@
           <div class="w-100">
             <textarea [(ngModel)]="commentaireAvis[publication.id!]" class="form-control mb-2" rows="2"
               placeholder="Votre commentaire..."></textarea>
-            <button class="btn btn-sm btn-primary" (click)="enregistrerAvis(publication.id!)" *ngIf="isClient">
+            <button class="btn btn-sm btn-primary" (click)="enregistrerAvis(publication.id!)" >
               Envoyer l’avis
             </button>
 

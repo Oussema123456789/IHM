@@ -26,6 +26,9 @@ import { AjouterPublicationComponent } from './ajouter-publication/ajouter-publi
 import { PostviewComponent } from './postview/postview.component';
 import { ModifierPublicationComponent } from './modifier-publication/modifier-publication.component';
 import { AdminValidationsComponent } from './admin-validations/admin-validations.component';
+import { WelcomeclientComponent } from './welcomeclient/welcomeclient.component';
+import { NavbarclientComponent } from './navbarclient/navbarclient.component';
+import { UserpageComponent } from './userpage/userpage.component';
 @NgModule({
   declarations: [
     AjouterPublicationComponent,
@@ -45,7 +48,7 @@ import { AdminValidationsComponent } from './admin-validations/admin-validations
   LeftbarComponent,
   NavbarComponent,
   PortfolioComponent,
-  AjouterSousCategorieComponent,  ModifierSousCategorieComponent,SousCategorieComponent, PostviewComponent, ModifierPublicationComponent, AdminValidationsComponent
+  AjouterSousCategorieComponent,  ModifierSousCategorieComponent,SousCategorieComponent, PostviewComponent, ModifierPublicationComponent, AdminValidationsComponent, WelcomeclientComponent, NavbarclientComponent, UserpageComponent
   
 
   ],

@@ -1,0 +1,8 @@
+.avatar-img {
+    width: 50px; /* Taille de l'avatar */
+    height: 50px; /* Taille de l'avatar */
+    object-fit: cover; /* Cela permet de recadrer l'image sans la déformer */
+    border-radius: 50%; /* Rendre l'image circulaire */
+    display: block; /* Garantir que l'image est un bloc */
+    margin: 0 auto; /* Centrer l'image */
+}

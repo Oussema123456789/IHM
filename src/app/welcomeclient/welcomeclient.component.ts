@@ -8,20 +8,18 @@ import { Avis } from 'src/Model/Avis';
 import { AvisService } from 'src/Service/avis.service';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  selector: 'app-welcomeclient',
+  templateUrl: './welcomeclient.component.html',
+  styleUrls: ['./welcomeclient.component.css']
 })
-export class PostComponent  implements OnInit {
+export class WelcomeclientComponent implements OnInit {
 
   publications: Publication[] = [];
   prestataires: any[] = [];
   sousCategories: SousCategorie[] = [];
   utilisateurs: Utilisateur[] = [];
   avisList: Avis[] = [];  // Liste des avis
-  selectedPublication: Publication | null = null;
-  showModal: boolean = false;
-  
+
   isLoading = true;
   isPrestataire = false;
   isAdmin = false;
@@ -100,24 +98,7 @@ export class PostComponent  implements OnInit {
   isMyPublication(pub: Publication): boolean {
     return pub.prestataireId === this.currentUserId;
   }
-  ouvrirModal(pub: Publication) {
-    this.selectedPublication = pub;
-    this.showModal = true;
-  
-    // Initialiser les champs s'ils ne le sont pas
-    if (this.commentaireAvis[pub.id!] === undefined) {
-      this.commentaireAvis[pub.id!] = '';
-    }
-    if (this.selectedNote[pub.id!] === undefined) {
-      this.selectedNote[pub.id!] = 0;
-    }
-  }
-  
-  fermerModal() {
-    this.showModal = false;
-    this.selectedPublication = null;
-  }
-  
+
   modifierPublication(id: string): void {
     this.router.navigate(['/modifier-publication', id]);
   }

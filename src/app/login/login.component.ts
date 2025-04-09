@@ -20,14 +20,20 @@ export class LoginComponent {
         if (user.role === 'admin') {
           this.router.navigate(['/admin']);
         } else if (user.role === 'client') {
-          this.router.navigate(['/Postview']);
+          this.router.navigate(['/Post']);
         } else {
-          this.router.navigate(['/Postview']);
+          this.router.navigate(['/Post']);
         }
       },
       error => {
         this.errorMessage = 'Email ou mot de passe incorrect';
       }
     );
+  }
+  register() {
+    this.router.navigate(['/register']);
+  }
+  redirectlogin() {
+    this.router.navigate(['/login']);
   }
 }
