@@ -1,103 +1,58 @@
 <app-navbar></app-navbar>
+<app-leftbar></app-leftbar>
 
-<div class="main-content right-chat-active">
-  <div class="middle-sidebar-bottom">
-    <div class="middle-sidebar-left">
-      <div class="row">
-        <!-- Profil utilisateur -->
-        <div class="col-lg-12">
-          <div class="card w-100 border-0 p-0 bg-white shadow-xss rounded-xxl">
-            <div class="card-body h250 p-0 rounded-xxl overflow-hidden m-3">
-              <img [src]="user?.avatarUrl || 'https://via.placeholder.com/50x50.png'" alt="avatar" class="shadow-sm rounded-circle w50">
-            </div>
-            <div class="card-body p-0 position-relative">
-              <h4 class="fw-700 font-sm mt-2 mb-lg-5 mb-4 pl-15">
-                {{ user?.nom }}
-                <span class="fw-500 font-xssss text-grey-500 mt-1 mb-3 d-block">{{ user?.email }}</span>
-              </h4>
-              <div class="d-flex align-items-center justify-content-center position-absolute-md right-15 top-0 me-2">
-                <h4 class="fw-700 font-sm mt-2 mb-lg-5 mb-4 pl-15">{{ user?.phone }}</h4>
-              </div>
-            </div>
+<!-- main content -->
+<div class="main-content bg-lightblue theme-dark-bg right-chat-active">
+    <div class="middle-sidebar-bottom">
+        <div class="middle-sidebar-left">
+            <div class="middle-wrap">
+                <div class="card w-100 border-0 bg-white shadow-xs p-0 mb-4">
+                  <div class="card-body p-4 w-100 bg-current border-0 d-flex align-items-center rounded-3">
+                    <a href="default-settings.html" class="d-inline-block mt-2 me-3">
+                      <i class="ti-arrow-left font-sm text-white"></i>
+                    </a>
+                  
+                    <img [src]="user.avatarUrl" alt="Image Portfolio" class="w40 h40 rounded-circle me-3" width="150">
+                  
+                    <h4 class="font-xs text-white fw-600 mb-0">
+                      Portfolio de <strong>{{ user.nom }}</strong>
+                    </h4>
+                  
+                    <div style="margin-left: auto; text-align: right;" class="text-white font-xs">
+                      {{ user.email }}<br>
+                      {{ user.phone }}
+                    </div>
+                  </div>
+                  
 
-            <div class="card-body d-block w-100 shadow-none mb-0 p-0 border-top-xs">
-              <ul class="nav nav-tabs h55 d-flex product-info-tab border-bottom-0 ps-4" id="pills-tab" role="tablist">
-                <li class="active list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block active" href="#navtabs1" data-toggle="tab">About</a></li>
-                <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs2" data-toggle="tab">Membership</a></li>
-                <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs3" data-toggle="tab">Discussion</a></li>
-                <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs4" data-toggle="tab">Video</a></li>
-                <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs5" data-toggle="tab">Group</a></li>
-                <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs6" data-toggle="tab">Events</a></li>
-                <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs7" data-toggle="tab">Media</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+                    <div class="card-body p-lg-5 p-4 w-100 border-0 mb-0">
+                        <form >
+                            <!-- Champ de description -->
+                            <div class="form-group" >
+                                <label class="mont-font fw-600 font-xsss">Description </label>
+                                <textarea [(ngModel)]="portfolio.description" name="description" class="form-control" readonly></textarea>
+                              </div>
+                              
+                              <div class="form-group">
+                                <label class="mont-font fw-600 font-xsss">Cv :</label>
+                              </div>
+                              
+                              <div *ngIf="portfolio.imageUrl">
+                                <img [src]="portfolio.imageUrl" alt="Image Portfolio" class="img-thumbnail" width="150">
+                              </div>
+                              
+                              
+                              
 
-        <!-- Colonne droite : à propos -->
-        <div class="col-xl-4 col-xxl-3 col-lg-4 pe-0">
-          <div class="card w-100 shadow-xss rounded-xxl border-0 mb-3">
-            <div class="card-body d-block p-4">
-              <h4 class="fw-700 mb-3 font-xsss text-grey-900">About</h4>
-              <p class="fw-500 text-grey-500 lh-24 font-xssss mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat non nisi.
-              </p>
-            </div>
-            <div class="card-body border-top-xs d-flex">
-              <i class="feather-lock text-grey-500 me-3 font-lg"></i>
-              <h4 class="fw-700 text-grey-900 font-xssss mt-0">Private 
-                <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">Only friends can see</span>
-              </h4>
-            </div>
-            <div class="card-body d-flex pt-0">
-              <i class="feather-eye text-grey-500 me-3 font-lg"></i>
-              <h4 class="fw-700 text-grey-900 font-xssss mt-0">Visible 
-                <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">Anyone can find you</span>
-              </h4>
-            </div>
-            <div class="card-body d-flex pt-0">
-              <i class="feather-map-pin text-grey-500 me-3 font-lg"></i>
-              <h4 class="fw-700 text-grey-900 font-xssss mt-1">Flodia, Austia</h4>
-            </div>
-            <div class="card-body d-flex pt-0">
-              <i class="feather-users text-grey-500 me-3 font-lg"></i>
-              <h4 class="fw-700 text-grey-900 font-xssss mt-1">General Group</h4>
-            </div>
-          </div>
-        </div>
-
-        <!-- Colonne gauche : publications -->
-        <div class="col-xl-8 col-xxl-9 col-lg-8">
-          <div *ngFor="let publication of filteredPublications()" class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-4 bg-white">
-            <ng-container *ngIf="getPrestataireById(publication.prestataireId) as prestataire">
-              <!-- Info auteur -->
-              <div class="d-flex align-items-center mb-3">
-                <figure class="avatar me-3 mb-0">
-                  <img [src]="prestataire.avatarUrl || 'https://via.placeholder.com/50x50.png'" alt="avatar" class="shadow-sm rounded-circle w45 h45">
-                </figure>
-                <div>
-                  <h4 class="fw-700 text-grey-900 font-xssss mb-0">{{ prestataire.nom }}</h4>
-                  <span class="font-xssss text-grey-500">{{ publication.date_pub | date:'short' }}</span>
+                            <!-- Bouton Save -->
+                            <div class="col-lg-12 mb-0 mt-2 ps-0">
+                                
+                            </div>
+                        </form>
+                    </div>
                 </div>
-              </div>
-
-              <!-- Titre et description -->
-              <div class="mb-3">
-                <h5 class="fw-600 text-grey-800 font-xsss mb-2">{{ publication.titre }}</h5>
-                <p class="font-xssss text-grey-700 mb-0">{{ publication.description }}</p>
-              </div>
-
-             
-
-              <!-- Actions -->
-              <div class="d-flex justify-content-end">
-                <button class="btn btn-sm btn-primary me-2">Commenter</button>
-                <button class="btn btn-sm btn-outline-secondary">Partager</button>
-              </div>
-            </ng-container>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+            </div>
+        </div>            
+    </div>            
 </div>
+<!-- main content -->

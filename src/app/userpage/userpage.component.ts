@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Publication } from 'src/Model/Publication';
-import { UtilisateurService } from 'src/Service/utilisateur.service';
-import { PublicationService } from 'src/Service/publication.service'; // <-- ajoute ça
-import { Utilisateur } from 'src/Model/Utilisateur';
+import { PortfolioService } from 'src/Service/portfolio.service';
 
 @Component({
   selector: 'app-userpage',
@@ -12,43 +9,68 @@ import { Utilisateur } from 'src/Model/Utilisateur';
 })
 export class UserpageComponent implements OnInit {
   userId: string | null = null;
-  user: any = null;
-  publications: Publication[] = [];
-  utilisateurs: Utilisateur[] = [];
-
+  user: any = {}; // Infos utilisateur/Prestataire
+  portfolio = {
+    description: '',
+    imageUrl: ''
+  };
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UtilisateurService,
-    private publicationService: PublicationService // <-- injecte ici
+    private portfolioService: PortfolioService
   ) {}
 
   ngOnInit(): void {
+    // Récupère l’ID depuis l’URL
     this.route.paramMap.subscribe(params => {
-      this.userId = params.get('id');  // Récupérer l'ID depuis l'URL
+      this.userId = params.get('id'); // <-- L’ID dans /userpage/:id
       if (this.userId) {
-        this.loadPublications();
-        this.loadUser();
+        this.getUserPortfolio();
       }
     });
   }
 
-  loadPublications(): void {
-    this.publicationService.getPublications().subscribe(data => {
-      // filtrer les publications selon l'id de l'utilisateur
-      this.publications = data.filter(pub => pub.prestataireId === this.userId);
+  // Récupérer les infos utilisateur et son portfolio
+  getUserPortfolio(): void {
+    if (!this.userId) return;
+
+    this.portfolioService.getUser(this.userId).subscribe({
+      next: (data) => {
+        console.log('Utilisateur récupéré:', data);
+        this.user = data;
+
+        if (data.portfolio) {
+          this.portfolio.description = data.portfolio.description || '';
+          this.portfolio.imageUrl = data.portfolio.imageUrl || '';
+        }
+      },
+      error: (err) => {
+        console.error("Erreur lors de la récupération du portfolio :", err);
+      }
     });
   }
 
-  loadUser(): void {
-    this.userService.getUserById(this.userId!).subscribe(data => {
-      this.user = data;
+  onSavePortfolio(): void {
+    if (!this.userId) return;
+
+    this.portfolioService.savePortfolio(this.userId, this.portfolio).subscribe({
+      next: (data) => {
+        console.log('Portfolio mis à jour avec succès', data);
+      },
+      error: (err) => {
+        console.error("Erreur lors de l'enregistrement du portfolio :", err);
+      }
     });
   }
-  filteredPublications(): Publication[] {
-    return this.publications.filter(p => p.statut === 'accepted'); // exemple
-  }
-  getPrestataireById(id: string): Utilisateur | undefined {
-    return this.utilisateurs.find(user => user.id === Number(id));
+
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.portfolio.imageUrl = reader.result as string;
+      };
+    }
   }
 }

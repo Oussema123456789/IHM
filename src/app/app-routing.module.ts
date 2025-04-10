@@ -56,7 +56,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, PrestataireGuard] 
   },
   {
-    path: 'ajouter-publication/:id',  // :id permet de capturer l'ID du prestataire
+    path: 'ajouter-publication',  // :id permet de capturer l'ID du prestataire
     component: AjouterPublicationComponent,
   },
   { path: 'profile/:id', component: ProfileComponent },

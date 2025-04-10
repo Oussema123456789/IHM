@@ -179,9 +179,33 @@
   <section style="max-width: 1200px; margin: 60px auto; padding: 0 20px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
       <h2 style="font-size: 24px;">Réserver un service</h2>
-      <a href="#" style="color: #fcb900; font-weight: bold; text-decoration: none;">Voir plus ➜</a>
+      <a *ngIf="isPrestataire" 
+         style="color: #fcb900; font-weight: bold; text-decoration: none; cursor: pointer;" 
+         (click)="ouvrirPopup()">
+        Ajouter une publication
+        <i class="fa fa-plus" style="margin-left: 5px;"></i>
+      </a>
     </div>
-  
+    
+    <div *ngIf="showPopup" class="modal-overlay" 
+         style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+                background-color: rgba(0,0,0,0.6); display: flex; 
+                justify-content: center; align-items: center; z-index: 9999;">
+      
+      <div style="background: white; border-radius: 10px; width: 90%; max-width: 1000px; position: relative; padding: 20px;">
+        
+        <!-- BOUTON FERMETURE FIXÉ -->
+        <button (click)="fermerPopup()" 
+                style="position: absolute; top: 10px; right: 10px; 
+                       background: transparent; border: none; font-size: 24px; cursor: pointer;">
+          &times;
+        </button>
+    
+        <!-- Composant d'ajout de publication -->
+        <app-ajouter-publication></app-ajouter-publication>
+      </div>
+    </div>
+    
     <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
       <!-- Carte 1 -->
       <div  *ngFor="let publication of filteredPublications()"  style="background: white; border-radius: 12px; width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 15px;">
@@ -199,8 +223,10 @@
           
           <!-- Nom du prestataire -->
           <strong style="font-weight: bold; color: #3a0ca3;">
-            <a [routerLink]="['/userpage', getPrestataireById(publication.prestataireId)?.id]">
-            </a>
+            <a *ngIf="getPrestataireById(publication.prestataireId)?.id" 
+   [routerLink]="['/userpage', getPrestataireById(publication.prestataireId)?.id]">
+
+</a>
 
             {{ getPrestataireById(publication.prestataireId)?.nom }}
           </strong>
@@ -214,12 +240,48 @@
             {{ publication.date_pub | date:'short' }}
           </span>
         </h4>
-        <button  (click)="redirectToLogin()" class="bg-current text-white font-xsss p-3 ms-2 w100 text-center lh-20" style="margin-top: 10px; background-color: #fcb900; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;font-weight: 600;">Contacter</button>
-    <!-- Bouton pour ouvrir la modale -->
+        <button (click)="ouvrirContactModal(publication)"
+        class="bg-current text-white font-xsss p-3 ms-2 w100 text-center lh-20"
+        style="margin-top: 10px; background-color: #fcb900; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">
+  Contacter
+</button>    <!-- Bouton pour ouvrir la modale -->
 <button class="btn btn-outline-secondary mt-2" (click)="ouvrirModal(publication)">
     💬 Voir les commentaires
   </button>
-    
+    <!-- Modal de contact -->
+<div *ngIf="showContactModal" 
+style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+
+<div style="background: white; padding: 30px; border-radius: 10px; width: 90%; max-width: 500px; position: relative;">
+
+<button (click)="fermerContactModal()" 
+       style="position: absolute; top: 10px; right: 10px; background: transparent; border: none; font-size: 24px; cursor: pointer;">
+ &times;
+</button>
+
+<h3 style="margin-bottom: 20px;">Contacter {{getPrestataireById(publication.prestataireId)?.nom}}</h3>
+<form>
+  <label for="telephone" ><strong>Téléphone :</strong></label>
+  <input id="telephone" type="text"
+         [value]="getPrestataireById(publication.prestataireId)?.phone"
+         readonly
+         style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+
+  <label for="email"><strong>Email :</strong></label>
+  <input id="email" type="email"
+         [value]="getPrestataireById(publication.prestataireId)?.email"
+         readonly
+         style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+</form>
+
+ <button type="submit"
+         style="background-color: #fcb900; color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+   Envoyer
+ </button>
+
+</div>
+</div>
+
     </div>
   
          </div>

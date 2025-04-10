@@ -88,8 +88,10 @@ export class PostComponent  implements OnInit {
     this.router.navigate(['/register']);
   }
   // Utilitaire
-  getPrestataireById(id: string): Utilisateur | undefined {
-    return this.utilisateurs.find(u => u.id?.toString() === id);
+  getPrestataireById(id: string) {
+    const prestataire = this.prestataires.find(p => p.id === id);
+    console.log('Prestataire trouvé pour ID:', id, prestataire);  // Log de débogage
+    return prestataire;
   }
 
   getSousCategorieById(id: string): string {
@@ -191,6 +193,56 @@ export class PostComponent  implements OnInit {
   getAvisByPublication(pubId: string): Avis[] {
     return this.avisList.filter(a => a.id_publication === pubId);
 }
+showPopup = false;
+selectedPrestataireId: string | null = null;
 
+ouvrirPopup() {
+  this.selectedPrestataireId = this.currentUserId; // par exemple, si tu veux ouvrir le popup pour l'utilisateur connecté
+  this.showPopup = true;
 }
+
+fermerPopup() {
+  this.showPopup = false;
+}
+showContactModal = false;
+contactEmail: string = '';
+contactMessage: string = '';
+contactPhoneNumber: string = '';
+selectedPrestataireName: string = ''; // ou récupéré dynamiquement selon le prestataire
+
+// Ouvrir la modal de contact
+ouvrirContactModal(publication: Publication) {
+  const prestataire = this.getPrestataireById(publication.prestataireId);
+  if (prestataire) {
+    this.contactPhoneNumber = prestataire.telephone || 'Non renseigné';
+    this.selectedPrestataireName = prestataire.nom || 'Prestataire';
+  } else {
+    this.contactPhoneNumber = 'Non trouvé';
+    this.selectedPrestataireName = 'Inconnu';
+  }
+
+  this.contactEmail = '';
+  this.contactMessage = '';
+  this.showContactModal = true;
+}
+
+
+// Fermer la modal de contact
+fermerContactModal() {
+  this.showContactModal = false;
+  this.contactEmail = '';
+  this.contactMessage = '';
+}
+
+// Envoi de mail simulé
+envoyerMail(event: Event) {
+  event.preventDefault();
+
+  console.log("Email :", this.contactEmail);
+  console.log("Message :", this.contactMessage);
+
+  alert("Message envoyé !");
+  this.fermerContactModal();
+
+}}
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PublicationService } from 'src/Service/publication.service';
 import { NotificationService } from 'src/Service/notif.service';  // Service de notification
@@ -34,8 +34,10 @@ export class AjouterPublicationComponent implements OnInit {
     private router: Router,
     private notificationService: NotificationService // Injecter le service de notification
   ) {}
-
+  @Input() prestataireId!: string;
   ngOnInit(): void {
+    console.log("Ajout pour prestataire :", this.prestataireId);
+
     const today = new Date();
     this.publication.date_pub = today.toISOString().split('T')[0];
 
@@ -88,7 +90,7 @@ export class AjouterPublicationComponent implements OnInit {
         );
 
         alert("Votre publication a été soumise et attend la validation de l'administrateur.");
-        this.router.navigate(['/Postview']);
+        this.router.navigate(['/Post']);
       },
       (error) => {
         console.error("Erreur lors de l'ajout de la publication", error);
