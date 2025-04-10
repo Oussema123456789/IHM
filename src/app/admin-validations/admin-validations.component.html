@@ -1,29 +1,50 @@
-<div class="container mt-4">
-    <h2>Validations des publications</h2>
-  
-    <div *ngIf="isLoading" class="text-center mt-4">
-      <p>Chargement des publications en attente...</p>
+<app-navbar></app-navbar>
+<app-leftbar></app-leftbar>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Validations des publications</h2>
+
+  <!-- Message de chargement -->
+  <div *ngIf="isLoading" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Chargement...</span>
     </div>
-  
-    <div *ngIf="!isLoading && publicationsEnAttente.length === 0" class="alert alert-info mt-4">
-      Aucune publication en attente de validation.
-    </div>
-  
-    <div *ngFor="let pub of publicationsEnAttente" class="card mb-3 shadow-sm">
-      <div class="card-body">
-        <h5 class="card-title">{{ pub.titre }}</h5>
-        <p class="card-text">
-          <strong>Description :</strong> {{ pub.description }}<br>
-          <strong>Prix :</strong> {{ pub.prix }} TND<br>
-          <strong>Date :</strong> {{ pub.date_pub | date:'short' }}<br>
-          <strong>Sous-catégorie :</strong> {{ pub.sousCategorieId }}
-        </p>
-  
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-success me-2" (click)="accepterPublication(pub)">Accepter</button>
-          <button class="btn btn-danger" (click)="refuserPublication(pub)">Refuser</button>
-        </div>
+    <p class="mt-3">Chargement des publications en attente...</p>
+  </div>
+
+  <!-- Message si aucune publication -->
+  <div *ngIf="!isLoading && publicationsEnAttente.length === 0" class="alert alert-info text-center">
+    Aucune publication en attente de validation.
+  </div>
+
+  <!-- Liste des publications -->
+  <div *ngFor="let pub of publicationsEnAttente" class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h1 class="card-title text-primary" > <strong>Prestataire :</strong> {{ getNomPrestataire(pub.prestataireId) }}<br></h1>
+      <p class="card-text mb-2">
+        <strong>Titre :</strong> {{ pub.titre }}
+      </p>
+      <p class="card-text mb-2">
+        <strong>Description :</strong> {{ pub.description }}
+      </p>
+      <p class="card-text mb-2">
+        <strong>Prix :</strong> {{ pub.prix }} TND
+      </p>
+      <p class="card-text mb-2">
+        <strong>Date :</strong> {{ pub.date_pub | date: 'short' }}
+      </p>
+      <p class="card-text mb-2">
+        <strong>Sous-catégorie :</strong> {{ getNomSousCategorie(pub.sousCategorieId) }}
+      </p>
+
+      <div class="d-flex justify-content-end mt-3">
+        <button class="btn btn-success me-2" (click)="accepterPublication(pub)">
+          Accepter
+        </button>
+        <button class="btn btn-danger" (click)="refuserPublication(pub)">
+          Refuser
+        </button>
       </div>
     </div>
   </div>
-  
+</div>

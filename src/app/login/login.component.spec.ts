@@ -1,21 +1,43 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/Service/auth.service';
 
-import { LoginComponent } from './login.component';
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent {
+  email: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+  constructor(private authService: AuthService, private router: Router) {}
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [LoginComponent]
-    });
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  login() {
+    this.authService.login(this.email, this.password).subscribe(
+      user => {
+        // Après une connexion réussie, rediriger selon le rôle
+        if (user.role === 'admin') {
+          this.router.navigate(['/admin']);
+        } else if (user.role === 'client') {
+          this.router.navigate(['/Post']);
+        } else {
+          this.router.navigate(['/Post']);
+        }
+      },
+      error => {
+        // Si l'utilisateur est bloqué, l'erreur contient le message "Votre compte est bloqué"
+        this.errorMessage = error.message;
+      }
+    );
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  register() {
+    this.router.navigate(['/register']);
+  }
+
+  redirectlogin() {
+    this.router.navigate(['/login']);
+  }
+}

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicationService } from 'src/Service/publication.service';
+import { SousCategorieService } from 'src/Service/souscategorie.service';
+import { NotificationService } from 'src/Service/notif.service';
 import { Publication } from 'src/Model/Publication';
-import { NotificationService } from 'src/Service/notif.service';  // Importez NotificationService
+import { SousCategorie } from 'src/Model/SousCategorie';
+import { UtilisateurService } from 'src/Service/utilisateur.service';
 
 @Component({
   selector: 'app-admin-validations',
@@ -10,15 +13,33 @@ import { NotificationService } from 'src/Service/notif.service';  // Importez No
 })
 export class AdminValidationsComponent implements OnInit {
   publicationsEnAttente: Publication[] = [];
+  sousCategoriesMap: { [id: string]: string } = {};
   isLoading: boolean = true;
+  utilisateursMap: { [key: string]: string } = {}; 
 
   constructor(
     private publicationService: PublicationService,
-    private notificationService: NotificationService  // Injectez NotificationService
+    private sousCategorieService: SousCategorieService,
+    private notificationService: NotificationService,
+    private utilisateurService: UtilisateurService
   ) {}
 
   ngOnInit(): void {
-    this.getPublicationsEnAttente();
+    this.chargerSousCategoriesEtPublications();
+    this.chargerUtilisateurs();
+
+  }
+
+  chargerSousCategoriesEtPublications(): void {
+    this.sousCategorieService.getSousCategories().subscribe(sousCats => {
+      sousCats.forEach(sc => {
+        if (sc.id) {
+          this.sousCategoriesMap[sc.id] = sc.nomscat;
+        }
+      });
+
+      this.getPublicationsEnAttente();
+    });
   }
 
   getPublicationsEnAttente(): void {
@@ -28,12 +49,15 @@ export class AdminValidationsComponent implements OnInit {
     });
   }
 
+  getNomSousCategorie(id: string): string {
+    return this.sousCategoriesMap[id] || id;
+  }
+
   accepterPublication(pub: Publication): void {
     pub.statut = 'active';
     this.publicationService.modifierPublication(pub).subscribe(() => {
-      // Envoyer une notification au prestataire
       const notification = {
-        userId: pub.prestataireId,  // ID du prestataire
+        userId: pub.prestataireId,
         message: `Votre publication "${pub.titre}" a été validée par l'administrateur.`,
         type: 'validation',
         publicationId: pub.id
@@ -46,13 +70,22 @@ export class AdminValidationsComponent implements OnInit {
       this.getPublicationsEnAttente();
     });
   }
+  chargerUtilisateurs(): void {
+    this.utilisateurService.getUtilisateurs().subscribe(utilisateurs => {
+      utilisateurs.forEach(user => {
+        if (user.id) {
+          this.utilisateursMap[user.id] = `${user.nom} `; // Adapté selon votre modèle
+        }
+      });
+      this.getPublicationsEnAttente();
+    });
+  }
 
   refuserPublication(pub: Publication): void {
     pub.statut = 'refusee';
     this.publicationService.modifierPublication(pub).subscribe(() => {
-      // Envoyer une notification au prestataire
       const notification = {
-        userId: pub.prestataireId,  // ID du prestataire
+        userId: pub.prestataireId,
         message: `Votre publication "${pub.titre}" a été refusée par l'administrateur.`,
         type: 'validation',
         publicationId: pub.id
@@ -64,5 +97,8 @@ export class AdminValidationsComponent implements OnInit {
 
       this.getPublicationsEnAttente();
     });
+  }
+  getNomPrestataire(id: string): string {
+    return this.utilisateursMap[id] || 'Inconnu';
   }
 }

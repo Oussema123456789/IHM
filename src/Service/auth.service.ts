@@ -18,6 +18,13 @@ export class AuthService {
       map(users => {
         if (users.length > 0) {
           const user = users[0];
+
+          // Vérifier si l'utilisateur est bloqué
+          if (user.bloque) {
+            throw new Error('Votre compte est bloqué. Veuillez contacter l\'administrateur.');
+          }
+
+          // Si l'utilisateur n'est pas bloqué, enregistrez-le et retournez l'utilisateur
           localStorage.setItem('user', JSON.stringify(user));
           this.userSubject.next(user);
           return user;
@@ -27,7 +34,7 @@ export class AuthService {
       })
     );
   }
-  
+
   register(userData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, userData);
   }
@@ -40,9 +47,6 @@ export class AuthService {
 
   getUser(): any {
     return JSON.parse(localStorage.getItem('user')!);
-  }
-  getNotifications(userId: string): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:3000/notifications?userId=${userId}`);
   }
 
   getRole(): string {

@@ -1,18 +1,27 @@
-<div class="container">
-    <h2 class="mt-4">Liste des Sous-Catégories</h2>
-    <a routerLink="/ajouter-sous-categorie" class="btn btn-success mt-3">Ajouter une Sous-Catégorie</a>
+<app-navbar></app-navbar>
+<app-leftbar></app-leftbar>
+
+<div class="page-center">
+  <div class="container content-box">
+    <h2 class="mt-4 text-center">Liste des Sous-Catégories</h2>
+
+    <div class="text-center">
+      <a [routerLink]="['/ajouter-sous-categorie', categorieId]" class="btn btn-success mt-3">
+        Ajouter une Sous-Catégorie
+      </a>
+    </div>
 
     <!-- Message de chargement -->
-    <div *ngIf="loading" class="alert alert-info">Chargement...</div>
+    <div *ngIf="loading" class="alert alert-info mt-3 text-center">Chargement...</div>
 
     <!-- Message d'erreur -->
-    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3 text-center">{{ errorMessage }}</div>
 
     <!-- Liste des sous-catégories -->
-    <div *ngIf="!loading && !errorMessage">
+    <div *ngIf="!loading && !errorMessage" class="mt-4">
       <ul class="list-group">
         <li *ngFor="let sousCat of sousCategories" class="list-group-item d-flex justify-content-between align-items-center">
-          <span>{{ sousCat.nomscat }}</span>
+          <span><strong>{{ sousCat.nomscat }}</strong></span>
           <div>
             <a [routerLink]="['/modifier-sous-categorie', sousCat.id]" class="btn btn-warning btn-sm me-2">Modifier</a>
             <button class="btn btn-danger btn-sm" (click)="supprimerSousCategorie(sousCat.id)">Supprimer</button>
@@ -21,6 +30,8 @@
       </ul>
     </div>
 
-    <!-- Bouton Retour -->
-    <a routerLink="/Categorie" class="btn btn-secondary mt-3">Retour aux catégories</a>
+    <div class="text-center">
+      <a routerLink="/Categorie" class="btn btn-secondary mt-4">Retour aux catégories</a>
+    </div>
+  </div>
 </div>

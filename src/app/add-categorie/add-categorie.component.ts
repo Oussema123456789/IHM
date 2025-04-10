@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { v4 as uuidv4 } from 'uuid'; // ✅ Import ajouté
 import { Categorie } from 'src/Model/Categorie';
 import { CategorieService } from 'src/Service/categorie.service';
 
@@ -13,15 +14,17 @@ export class AddCategorieComponent {
 
   constructor(
     private categorieService: CategorieService,
-    private router: Router // Injection du Router pour la navigation
+    private router: Router
   ) {}
 
   onAjouterCategorie() {
     if (this.nouvelleCategorie.nomcat) {
+      this.nouvelleCategorie.id = uuidv4(); // ✅ Génération de l'ID ici
+
       this.categorieService.ajouterCategorie(this.nouvelleCategorie).subscribe(
         (categorie) => {
           console.log('Catégorie ajoutée avec succès:', categorie);
-          this.router.navigate(['/Categorie']); // Redirection après l'ajout
+          this.router.navigate(['/Categorie']);
         },
         (error) => {
           console.error('Erreur lors de l\'ajout de la catégorie:', error);

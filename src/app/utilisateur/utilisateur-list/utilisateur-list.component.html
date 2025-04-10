@@ -1,0 +1,41 @@
+<app-leftbar></app-leftbar>
+<app-navbar></app-navbar>
+
+<div class="main-content container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Gestion des Utilisateurs</h2>
+    <a routerLink="/utilisateur/ajouter" class="btn btn-success">
+      ➕ Ajouter un utilisateur
+    </a>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle shadow-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Nom</th>
+          <th>Rôle</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let utilisateur of utilisateurs">
+          <td>{{ utilisateur.id }}</td>
+          <td>{{ utilisateur.email }}</td>
+          <td>{{ utilisateur.nom }}</td>
+          <td>{{ utilisateur.role }}</td>
+          <td class="text-center">
+            <a [routerLink]="['/utilisateur/modifier', utilisateur.id]" class="btn btn-oussema btn-sm me-2">
+              Modifier
+            </a>
+            <button (click)="supprimerUtilisateur(utilisateur.id)" class="btn btn-danger btn-sm">
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

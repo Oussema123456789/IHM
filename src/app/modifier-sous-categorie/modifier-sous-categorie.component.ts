@@ -4,6 +4,7 @@ import { Categorie } from 'src/Model/Categorie';
 import { SousCategorie } from 'src/Model/SousCategorie';
 import { CategorieService } from 'src/Service/categorie.service';
 import { SousCategorieService } from 'src/Service/souscategorie.service';
+import { Location } from '@angular/common'; // <- Import pour revenir en arrière
 
 @Component({
   selector: 'app-modifier-sous-categorie',
@@ -20,7 +21,8 @@ export class ModifierSousCategorieComponent implements OnInit {
     private route: ActivatedRoute,
     private sousCategorieService: SousCategorieService,
     private categorieService: CategorieService,
-    private router: Router
+    private router: Router,
+    private location: Location // <- Ajout du service Location
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +49,12 @@ export class ModifierSousCategorieComponent implements OnInit {
 
   modifierSousCategorie(): void {
     this.sousCategorieService.modifierSousCategorie(this.sousCategorie).subscribe({
-      next: () => this.router.navigate(['/sous-categorie']),
+      next: () =>  this.location.back(),
       error: (err) => (this.errorMessage = 'Erreur lors de la modification'),
     });
+  }
+
+  retour(): void {
+    this.location.back(); // <- Fonction pour revenir à la page précédente
   }
 }

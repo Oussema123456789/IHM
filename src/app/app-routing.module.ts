@@ -26,6 +26,11 @@ import { ModifierPublicationComponent } from './modifier-publication/modifier-pu
 import { AdminValidationsComponent } from './admin-validations/admin-validations.component';
 import { WelcomeclientComponent } from './welcomeclient/welcomeclient.component';
 import { UserpageComponent } from './userpage/userpage.component';
+import { BloquerPrestataireComponent } from './utilisateur/bloquer-prestataire/bloquer-prestataire.component';
+import { SignalerPrestataireComponent } from './utilisateur/signaler-prestataire/signaler-prestataire.component';
+import { ModifierUtilisateurComponent } from './utilisateur/modifier-utilisateur/modifier-utilisateur.component';
+import { AjouterUtilisateurComponent } from '././utilisateur/ajouter-utilisateur/ajouter-utilisateur.component';
+import { UtilisateurListComponent } from './utilisateur/utilisateur-list/utilisateur-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -65,7 +70,7 @@ const routes: Routes = [
     component: AddCategorieComponent, 
   },
   { path: 'categories/:id/sous-categories', component: SousCategorieComponent},
-  { path: 'ajouter-sous-categorie', component: AjouterSousCategorieComponent  },
+  { path: 'ajouter-sous-categorie/:id', component: AjouterSousCategorieComponent  },
   { path: 'modifier-sous-categorie/:id', component: ModifierSousCategorieComponent }
   ,
   { 
@@ -97,6 +102,25 @@ const routes: Routes = [
   { 
     path: 'welcomeclient', 
     component: WelcomeclientComponent, 
+  },
+  { path: 'utilisateur_list', component: UtilisateurListComponent },
+
+
+  {
+    path: 'utilisateur/ajouter',
+    component: AjouterUtilisateurComponent
+  },
+  {
+    path: 'utilisateur/modifier/:id',
+    component: ModifierUtilisateurComponent
+  },
+  {
+    path: 'prestataire/signaler/:id',
+    component: SignalerPrestataireComponent
+  },
+  {
+    path: 'prestataire/bloquer/:id',
+    component: BloquerPrestataireComponent
   },
 
 

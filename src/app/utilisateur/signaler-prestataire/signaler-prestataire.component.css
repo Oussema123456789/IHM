@@ -1,0 +1,26 @@
+/* Conteneur de l'alerte qui couvre toute la page */
+.full-page-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* S'assurer que l'alerte est devant tout autre contenu */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Légère ombre autour pour plus de contraste */
+    border: 2px solid #dc2626; /* Contour rouge */
+    border-radius: 12px;
+  }
+  
+  /* Style du texte à l'intérieur du conteneur */
+  .full-page-alert p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #dc2626;
+    margin: 0;
+    text-align: center;
+  }
+  

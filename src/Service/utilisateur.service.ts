@@ -45,4 +45,11 @@ export class UtilisateurService {
   supprimerUtilisateur(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+  signalerPrestataire(id: number): Observable<Utilisateur> {
+    return this.http.patch<Utilisateur>(`${this.apiUrl}/${id}`, { signale: true });
+  }
+  
+  bloquerPrestataire(id: number): Observable<Utilisateur> {
+    return this.http.patch<Utilisateur>(`${this.apiUrl}/${id}`, { bloque: true });
+  }
 }

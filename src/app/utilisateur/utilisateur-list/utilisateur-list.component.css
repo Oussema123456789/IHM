@@ -1,0 +1,82 @@
+/* Empêche le scroll horizontal */
+body, html {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Contenu principal déplacé à droite du leftbar */
+.main-content {
+  margin-left: 260px; /* Doit correspondre à la largeur du leftbar */
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Responsive : désactive le décalage sur petit écran */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+}
+
+/* Style de la table */
+.table {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table th, .table td {
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.btn-validation {
+  background-color: #28a745; /* Vert Bootstrap */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+}
+
+.btn-oussema {
+  background-color: #29ADB5; /* Vert plus foncé au hover */
+}
+
+
+.table thead th {
+  background-color: #000000;
+  color: white;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Boutons */
+.btn-sm {
+  min-width: 90px;
+  font-weight: 500;
+}
+
+.btn-success {
+  font-weight: bold;
+  padding: 6px 12px;
+}
+
+/* Fix pour éviter l'effet de débordement avec leftbar */
+:host ::ng-deep .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1000;
+}

@@ -29,6 +29,11 @@ import { AdminValidationsComponent } from './admin-validations/admin-validations
 import { WelcomeclientComponent } from './welcomeclient/welcomeclient.component';
 import { NavbarclientComponent } from './navbarclient/navbarclient.component';
 import { UserpageComponent } from './userpage/userpage.component';
+import { AjouterUtilisateurComponent } from './utilisateur/ajouter-utilisateur/ajouter-utilisateur.component';
+import { BloquerPrestataireComponent } from './utilisateur/bloquer-prestataire/bloquer-prestataire.component';
+import { SignalerPrestataireComponent } from './utilisateur/signaler-prestataire/signaler-prestataire.component';
+import { ModifierUtilisateurComponent } from './utilisateur/modifier-utilisateur/modifier-utilisateur.component';
+import { UtilisateurListComponent } from './utilisateur/utilisateur-list/utilisateur-list.component';
 @NgModule({
   declarations: [
     AjouterPublicationComponent,
@@ -49,6 +54,7 @@ import { UserpageComponent } from './userpage/userpage.component';
   NavbarComponent,
   PortfolioComponent,
   AjouterSousCategorieComponent,  ModifierSousCategorieComponent,SousCategorieComponent, PostviewComponent, ModifierPublicationComponent, AdminValidationsComponent, WelcomeclientComponent, NavbarclientComponent, UserpageComponent
+  ,AjouterUtilisateurComponent, BloquerPrestataireComponent, SignalerPrestataireComponent, ModifierUtilisateurComponent, UtilisateurListComponent
   
 
   ],

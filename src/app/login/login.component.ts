@@ -17,6 +17,7 @@ export class LoginComponent {
   login() {
     this.authService.login(this.email, this.password).subscribe(
       user => {
+        // Après une connexion réussie, rediriger selon le rôle
         if (user.role === 'admin') {
           this.router.navigate(['/admin']);
         } else if (user.role === 'client') {
@@ -26,13 +27,16 @@ export class LoginComponent {
         }
       },
       error => {
-        this.errorMessage = 'Email ou mot de passe incorrect';
+        // Si l'utilisateur est bloqué, l'erreur contient le message "Votre compte est bloqué"
+        this.errorMessage = error.message;
       }
     );
   }
+
   register() {
     this.router.navigate(['/register']);
   }
+
   redirectlogin() {
     this.router.navigate(['/login']);
   }
