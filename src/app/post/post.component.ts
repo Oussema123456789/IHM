@@ -21,18 +21,27 @@ export class PostComponent  implements OnInit {
   avisList: Avis[] = [];  // Liste des avis
   selectedPublication: Publication | null = null;
   showModal: boolean = false;
-  
+  regions: string[] = [
+    'Tunis', 'Ariana', 'Ben Arous', 'Manouba', 'Nabeul', 'Zaghouan',
+    'Bizerte', 'Béja', 'Jendouba', 'Kef', 'Siliana', 'Sousse',
+    'Monastir', 'Mahdia', 'Kairouan', 'Kasserine', 'Sidi Bouzid',
+    'Sfax', 'Gabès', 'Medenine', 'Tataouine', 'Tozeur', 'Kebili', 'Gafsa'
+  ];
+
+
   isLoading = true;
   isPrestataire = false;
   isAdmin = false;
   isClient = false;
   currentUserId: string = '';
+ 
 
   // Recherche avancée
   filter = {
     prestataireId: '',
     sousCategorieId: '',
     prixMin: 0,
+    region: '',
     prixMax:10000000
   };
 
@@ -50,8 +59,10 @@ export class PostComponent  implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     const currentUser = JSON.parse(localStorage.getItem('user')!);
     if (currentUser) {
+      
       this.currentUserId = currentUser.id;
       this.isPrestataire = currentUser.role === 'prestataire';
       this.isAdmin = currentUser.role === 'admin';
@@ -122,12 +133,16 @@ export class PostComponent  implements OnInit {
   
   modifierPublication(id: string): void {
     this.router.navigate(['/modifier-publication', id]);
+    
   }
 
   supprimerPublication(id: string): void {
     if (confirm("Êtes-vous sûr de vouloir supprimer cette publication ?")) {
       this.http.delete(`http://localhost:3000/publications/${id}`).subscribe(() => {
         this.publications = this.publications.filter(pub => pub.id !== id);
+
+        window.location.reload();
+
       });
     }
   }
@@ -137,6 +152,8 @@ export class PostComponent  implements OnInit {
     this.http.patch(`http://localhost:3000/publications/${id}`, { statut: 'active' }).subscribe(() => {
       const updated = this.publications.find(pub => pub.id === id);
       if (updated) updated.statut = 'active';
+      window.location.reload();
+
     });
   }
 
@@ -156,6 +173,8 @@ export class PostComponent  implements OnInit {
       alert("Avis enregistré !");
       this.selectedNote[publicationId] = 0;
       this.commentaireAvis[publicationId] = '';
+      window.location.reload();
+
     });
   }
 
@@ -168,8 +187,9 @@ export class PostComponent  implements OnInit {
       const prixValide = pub.prix >= this.filter.prixMin && pub.prix <= this.filter.prixMax;
       const sousCatValide = this.filter.sousCategorieId ? pub.sousCategorieId === this.filter.sousCategorieId : true;
       const prestValide = this.filter.prestataireId ? pub.prestataireId === this.filter.prestataireId : true;
+      const regionValide = this.filter.region ? pub.region === this.filter.region : true;
 
-      if (!prixValide || !sousCatValide || !prestValide) return false;
+      if (!prixValide || !sousCatValide || !prestValide ||!regionValide) return false;
 
       if (terms.length === 0) return true;
 
@@ -178,8 +198,9 @@ export class PostComponent  implements OnInit {
       const sousCategorie = this.getSousCategorieById(pub.sousCategorieId)?.toLowerCase() || '';
       const description = pub.description?.toLowerCase() || '';
       const prix = pub.prix?.toString() || '';
+      const region = pub.region?.toLowerCase() || '';
 
-      const fullContent = `${nomPrestataire} ${sousCategorie} ${description} ${prix}`;
+      const fullContent = `${nomPrestataire} ${sousCategorie} ${description} ${prix} ${region}`;
       return terms.every(term => fullContent.includes(term));
     });
   }

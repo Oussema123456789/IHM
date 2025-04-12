@@ -129,52 +129,52 @@
 
   <section class="hero">
     <div class="hero-content">
-      <h1>3asba, <br> en une minute chrono !</h1>
-      <p>Plateforme de 3asba N°1 en Tunisie</p>
+      <h1>Service <br> en une minute </h1>
+      <p>Plateforme de Service N°1 en Tunisie</p>
       <div class="search-bar">
         <input type="text" placeholder="Quel service recherchez-vous ?" [(ngModel)]="searchTerm">
         <button>🔍</button>
       </div>
     </div>
   </section>
-
-  <section class="stats">
+  <section class="stats" style="flex-wrap: wrap; display: flex; gap: 20px; justify-content: space-between; align-items: flex-end;">
     <div class="form-group d-flex align-items-end gap-2 flex-wrap">
-      <div>
-        <label for="prestataireId" class="form-label">Prestataire</label>
-        <select id="prestataireId" class="form-control" [(ngModel)]="filter.prestataireId">
-          <option value="">Tous</option>
-          <option *ngFor="let u of prestataires" [value]="u.id">{{ u.nom }}</option>
-        </select>
-      </div>
-    
-      <div>
-        <label for="sousCategorieId" class="form-label">Sous Categorie</label>
-        <select id="sousCategorieId" class="form-control" [(ngModel)]="filter.sousCategorieId">
-          <option value="">Tous</option>
-          <option *ngFor="let sc of sousCategories" [value]="sc.id">{{ sc.nomscat }}</option>
-        </select>
-      </div>
-    
-      <div>
-        <label for="prixMin" class="form-label">Prix min</label>
-        <input id="prixMin" type="number" class="form-control" placeholder="Prix min" [(ngModel)]="filter.prixMin">
-      </div>
-    
-      <div>
-        <label for="prixMax" class="form-label">Prix max</label>
-        <input id="prixMax" type="number" class="form-control" placeholder="Prix max" [(ngModel)]="filter.prixMax">
-      </div>
-    
-      <div>
-        <button type="submit" class="btn btn-primary">SEARCH</button>
-      </div>
+    <div style="flex: 1 1 160px; min-width: 160px;">
+      <label for="prestataireId" class="form-label">Prestataire</label>
+      <select id="prestataireId" class="form-control" [(ngModel)]="filter.prestataireId">
+        <option value="">Tous</option>
+        <option *ngFor="let u of prestataires" [value]="u.id">{{ u.nom }}</option>
+      </select>
     </div>
-    
-  </section>
-<!-- ... ton code existant ... -->
 
-  
+    <div style="flex: 1 1 160px; min-width: 160px;">
+      <label for="sousCategorieId" class="form-label">Sous Categorie</label>
+      <select id="sousCategorieId" class="form-control" [(ngModel)]="filter.sousCategorieId">
+        <option value="">Tous</option>
+        <option *ngFor="let sc of sousCategories" [value]="sc.id">{{ sc.nomscat }}</option>
+      </select>
+    </div>
+
+    <div style="flex: 1 1 160px; min-width: 160px;">
+      <label for="prixMin" class="form-label">Prix min</label>
+      <input id="prixMin" type="number" class="form-control" placeholder="Prix min" [(ngModel)]="filter.prixMin">
+    </div>
+
+    <div style="flex: 1 1 160px; min-width: 160px;">
+      <label for="prixMax" class="form-label">Prix max</label>
+      <input id="prixMax" type="number" class="form-control" placeholder="Prix max" [(ngModel)]="filter.prixMax">
+    </div>
+
+    <!-- ✅ Ajout du filtre par région -->
+    <div style="flex: 1 1 160px; min-width: 160px;">
+      <label for="region" class="form-label">Région</label>
+      <select id="region" class="form-control" [(ngModel)]="filter.region">
+        <option value="">Toutes</option>
+        <option *ngFor="let region of regions" [value]="region">{{ region }}</option>
+      </select>
+    </div>
+  </div>
+</section>  
   <!-- Cartes des services -->
   <section style="max-width: 1200px; margin: 60px auto; padding: 0 20px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
@@ -234,17 +234,24 @@
           <p>   {{ publication.description }}<br></p>
 
           <strong>Prix: </strong>{{ publication.prix }} TND<br>
+          <strong>Region: </strong>{{ publication.region }} <br>
             <strong>Sous-catégorie: </strong>{{ getSousCategorieById(publication.sousCategorieId) }}       
           <h4 class="fw-700 text-grey-900 font-xssss mt-1">
           <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">
-            {{ publication.date_pub | date:'short' }}
+            {{ publication.date_pub | date: 'shortDate' }}
           </span>
         </h4>
-        <button (click)="ouvrirContactModal(publication)"
-        class="bg-current text-white font-xsss p-3 ms-2 w100 text-center lh-20"
-        style="margin-top: 10px; background-color: #fcb900; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">
+        <button (click)="ouvrirContactModal(publication)" 
+        class="d-flex justify-content-center align-items-center bg-current text-white font-xsss p-3 ms-2 w100 text-center lh-20 publication-btn"
+        [style.margin-left]="'100px'" 
+        style="margin-top: 10px; color: #fcb900; background-color: #fcb900; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">
   Contacter
-</button>    <!-- Bouton pour ouvrir la modale -->
+</button>
+
+
+
+
+   <!-- Bouton pour ouvrir la modale -->
 <button class="btn btn-outline-secondary mt-2" (click)="ouvrirModal(publication)">
     💬 Voir les commentaires
   </button>
@@ -255,7 +262,7 @@ style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: 
 <div style="background: white; padding: 30px; border-radius: 10px; width: 90%; max-width: 500px; position: relative;">
 
 <button (click)="fermerContactModal()" 
-       style="position: absolute; top: 10px; right: 10px; background: transparent; border: none; font-size: 24px; cursor: pointer;">
+       style="position: absolute; top: 10px; right: 10px;  border: none; font-size: 24px; cursor: pointer;">
  &times;
 </button>
 
@@ -274,10 +281,7 @@ style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: 
          style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
 </form>
 
- <button type="submit"
-         style="background-color: #fcb900; color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;">
-   Envoyer
- </button>
+
 
 </div>
 </div>
@@ -287,47 +291,62 @@ style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: 
          </div>
   </section>
   <!-- Modal des commentaires -->
+<!-- Modal des commentaires -->
 <div class="modal-overlay" tabindex="-1" role="dialog" style="background-color: rgba(0,0,0,0.5);" *ngIf="showModal && selectedPublication">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
   
-        <div class="modal-header">
-          <h5 class="modal-title">Commentaires pour le service</h5>
-          <button type="button" class="btn-close" aria-label="Close" (click)="fermerModal()"></button>
-        </div>
-  
-        <div class="modal-body">
-          <!-- Liste des avis -->
-          <div *ngIf="getAvisByPublication(selectedPublication?.id||'').length > 0; else aucunAvis">
-            <div *ngFor="let avis of getAvisByPublication(selectedPublication?.id||'')" class="mb-3 border-bottom pb-2">
-              <img *ngIf="getUtilisateurById(avis.id_user)" 
-              [src]="getUtilisateurById(avis.id_user)?.avatarUrl" 
-              alt="avatar" class="shadow-sm rounded-circle" 
-              style="width: 40px; height: 40px; object-fit: cover;">
-              <strong>{{ getUtilisateurById(avis.id_user)?.nom }}</strong><br>
-              <span>{{ avis.commentaire }}</span><br>
-              <span class="text-warning">
-                <i class="fa fa-star" *ngFor="let star of [1,2,3,4,5]" [ngClass]="{'text-warning': star <= avis.note}"></i>
-              </span>
-            </div>
+  <div class="modal-dialog modal-lg" role="document" style="max-width: 800px; width: 90%; margin: auto;">
+    
+      <div class="modal-content" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+          <div class="modal-header" style="border-bottom: 1px solid #f1f1f1; padding: 15px;">
+            
+              <h5 class="modal-title" style="font-size: 1.25rem; font-weight: bold;">Commentaires pour le service</h5>
+              <button type="button" class="btn-close" aria-label="Close" (click)="fermerModal()">&times;</button>
+              
           </div>
-          <ng-template #aucunAvis>
-            <p class="text-muted">Aucun commentaire pour le moment.</p>
-          </ng-template>
-  
-          <!-- Ajouter un commentaire -->
-          <hr>
-          <h6 class="mt-3">Ajouter un commentaire</h6>
-          <textarea class="form-control mb-2" rows="2" [(ngModel)]="commentaireAvis[selectedPublication?.id||'']"></textarea>
-          <label>Note :</label>
-          <select class="form-select mb-3 w-25" [(ngModel)]="selectedNote[selectedPublication?.id||'']">
-            <option [value]="i" *ngFor="let i of [1,2,3,4,5]">{{ i }} ⭐</option>
-          </select>
-          <button class="btn btn-primary" (click)="enregistrerAvis(selectedPublication?.id||'')">Envoyer</button>
-        </div>
+
+          <div class="modal-body" style="padding: 20px;">
+              <!-- Liste des avis -->
+              <div *ngIf="getAvisByPublication(selectedPublication?.id || '').length > 0; else aucunAvis">
+                  <div *ngFor="let avis of getAvisByPublication(selectedPublication?.id || '')" class="mb-3 border-bottom pb-2" style="padding-bottom: 10px;">
+                      <div style="display: flex; align-items: center; gap: 15px;">
+                          <img *ngIf="getUtilisateurById(avis.id_user)" 
+                               [src]="getUtilisateurById(avis.id_user)?.avatarUrl" 
+                               alt="avatar" class="shadow-sm rounded-circle" 
+                               style="width: 40px; height: 40px; object-fit: cover;">
+                          <div>
+                              <strong>{{ getUtilisateurById(avis.id_user)?.nom }}</strong><br>
+                              <span>{{ avis.commentaire }}</span><br>
+                              <span class="text-warning">
+                                  <i class="fa fa-star" *ngFor="let star of [1,2,3,4,5]" 
+                                     [ngClass]="{'text-warning': star <= avis.note, 'text-muted': star > avis.note}"></i>
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <ng-template #aucunAvis>
+                  <p class="text-muted" style="font-size: 1rem;">Aucun commentaire pour le moment.</p>
+              </ng-template>
+
+              <!-- Ajouter un commentaire -->
+              <hr style="border-top: 1px solid #f1f1f1;">
+              <h6 class="mt-3" style="font-size: 1.1rem; font-weight: 600;">Ajouter un commentaire</h6>
+              <textarea class="form-control mb-2" rows="3" [(ngModel)]="commentaireAvis[selectedPublication?.id || '']" style="resize: none;"></textarea>
+              <div style="display: flex; gap: 10px; align-items: center;">
+                  <label style="font-size: 1rem; font-weight: 500;">Note :</label>
+                  <select class="form-select mb-3" [(ngModel)]="selectedNote[selectedPublication?.id || '']" style="width: 100px;">
+                      <option [value]="i" *ngFor="let i of [1,2,3,4,5]">{{ i }} ⭐</option>
+                  </select>
+              </div>
+              <button class="btn btn-primary w-100" (click)="enregistrerAvis(selectedPublication?.id || '')" 
+                      style="background-color: #fcb900; border: none; padding: 12px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+                  Envoyer
+              </button>
+          </div>
       </div>
-    </div>
   </div>
-  
+</div>
+
 </body>
 </html>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { PortfolioService } from 'src/Service/portfolio.service';
+import { Location } from '@angular/common'; // <- Import pour revenir en arrière
 
 @Component({
   selector: 'app-portfolio',
@@ -14,7 +16,8 @@ export class PortfolioComponent implements OnInit {
     imageUrl: ''
   };
 
-  constructor(private portfolioService: PortfolioService) {}
+  constructor(private portfolioService: PortfolioService,private location: Location // <- Ajout du service Location
+  ) {}
 
   ngOnInit(): void {
     this.loadUserData();
@@ -63,6 +66,9 @@ export class PortfolioComponent implements OnInit {
         console.error("Erreur lors de l'enregistrement du portfolio :", err);
       }
     });
+  }
+  retour(): void {
+    this.location.back(); // <- Fonction pour revenir à la page précédente
   }
 
   // Gérer l'ajout/modification d'image

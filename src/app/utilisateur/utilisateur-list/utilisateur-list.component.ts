@@ -21,6 +21,7 @@ export class UtilisateurListComponent implements OnInit {
       this.utilisateurs = data;
     });
   }
+ 
 
   supprimerUtilisateur(id: number | undefined) {
     if (id && confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {

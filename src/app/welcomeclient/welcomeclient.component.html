@@ -126,8 +126,10 @@
 <body>
 
   <header>
-    <div class="logo">🟨 ihm</div>
-
+    <a class="d-flex align-items-center">
+      <i class="feather-zap text-success display1-size me-2 ms-0"></i>
+      <span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">AlloService</span>
+  </a>
       
       <a (click)="redirectToLogin()"class="header-btn d-none d-lg-block bg-dark fw-500 text-white font-xsss p-3 ms-auto w100 text-center lh-20 rounded-xl" data-toggle="modal" data-target="#Modallogin">Login</a>
     <a (click)="redirectToRegister()" class="header-btn d-none d-lg-block bg-current fw-500 text-white font-xsss p-3 ms-2 w100 text-center lh-20 rounded-xl" data-toggle="modal" data-target="#Modalregister">Register</a>
@@ -137,8 +139,8 @@
 
   <section class="hero">
     <div class="hero-content">
-      <h1>3asba, <br> en une minute chrono !</h1>
-      <p>Plateforme de 3asba N°1 en Tunisie</p>
+      <h1>Service <br> en une minute </h1>
+      <p>Plateforme de Service N°1 en Tunisie</p>
       <div class="search-bar">
         <input type="text" placeholder="Quel service recherchez-vous ?" [(ngModel)]="searchTerm">
         <button>🔍</button>
@@ -146,61 +148,74 @@
     </div>
   </section>
 
-  <section class="stats">
+  <!-- ... même en-tête ... -->
+  <section class="stats" style="flex-wrap: wrap; display: flex; gap: 20px; justify-content: space-between; align-items: flex-end;">
     <div class="form-group d-flex align-items-end gap-2 flex-wrap">
-      <div>
-        <label for="prestataireId" class="form-label">Prestataire</label>
-        <select id="prestataireId" class="form-control" [(ngModel)]="filter.prestataireId">
-          <option value="">Tous</option>
-          <option *ngFor="let u of prestataires" [value]="u.id">{{ u.nom }}</option>
-        </select>
-      </div>
-    
-      <div>
-        <label for="sousCategorieId" class="form-label">Sous Categorie</label>
-        <select id="sousCategorieId" class="form-control" [(ngModel)]="filter.sousCategorieId">
-          <option value="">Tous</option>
-          <option *ngFor="let sc of sousCategories" [value]="sc.id">{{ sc.nomscat }}</option>
-        </select>
-      </div>
-    
-      <div>
-        <label for="prixMin" class="form-label">Prix min</label>
-        <input id="prixMin" type="number" class="form-control" placeholder="Prix min" [(ngModel)]="filter.prixMin">
-      </div>
-    
-      <div>
-        <label for="prixMax" class="form-label">Prix max</label>
-        <input id="prixMax" type="number" class="form-control" placeholder="Prix max" [(ngModel)]="filter.prixMax">
-      </div>
-    
-      <div>
-        <button type="submit" class="btn btn-primary">SEARCH</button>
-      </div>
+    <div style="flex: 1 1 160px; min-width: 160px;">
+      <label for="prestataireId" class="form-label">Prestataire</label>
+      <select id="prestataireId" class="form-control" [(ngModel)]="filter.prestataireId">
+        <option value="">Tous</option>
+        <option *ngFor="let u of prestataires" [value]="u.id">{{ u.nom }}</option>
+      </select>
     </div>
+
+    <div style="flex: 1 1 160px; min-width: 160px;">
+      <label for="sousCategorieId" class="form-label">Sous Categorie</label>
+      <select id="sousCategorieId" class="form-control" [(ngModel)]="filter.sousCategorieId">
+        <option value="">Tous</option>
+        <option *ngFor="let sc of sousCategories" [value]="sc.id">{{ sc.nomscat }}</option>
+      </select>
+    </div>
+
+    <div style="flex: 1 1 160px; min-width: 160px;">
+      <label for="prixMin" class="form-label">Prix min</label>
+      <input id="prixMin" type="number" class="form-control" placeholder="Prix min" [(ngModel)]="filter.prixMin">
+    </div>
+
+    <div style="flex: 1 1 160px; min-width: 160px;">
+      <label for="prixMax" class="form-label">Prix max</label>
+      <input id="prixMax" type="number" class="form-control" placeholder="Prix max" [(ngModel)]="filter.prixMax">
+    </div>
+
+    <!-- ✅ Ajout du filtre par région -->
+    <div style="flex: 1 1 160px; min-width: 160px;">
+      <label for="region" class="form-label">Région</label>
+      <select id="region" class="form-control" [(ngModel)]="filter.region">
+        <option value="">Toutes</option>
+        <option *ngFor="let region of regions" [value]="region">{{ region }}</option>
+      </select>
+    </div>
+
+   
     
-  </section>
+  </div>
+</section>
+
 <!-- ... ton code existant ... -->
 
   
   <!-- Cartes des services -->
   <section style="max-width: 1200px; margin: 60px auto; padding: 0 20px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-      <h2 style="font-size: 24px;">Réserver un service</h2>
-      <a href="#" style="color: #fcb900; font-weight: bold; text-decoration: none;">Voir plus ➜</a>
+      <h2 style="font-size: 24px;">Réserver un service :</h2>
     </div>
   
     <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
       <!-- Carte 1 -->
       <div  *ngFor="let publication of filteredPublications()"  style="background: white; border-radius: 12px; width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 15px;">
         <figure class="avatar me-3">
+
             <img *ngIf="getPrestataireById(publication.prestataireId)" 
                 [src]="getPrestataireById(publication.prestataireId)?.avatarUrl" 
                 alt="avatar" class="shadow-sm rounded-circle w45">
+                <strong style="font-weight: bold; color: #3a0ca3;">    {{ getPrestataireById(publication.prestataireId)?.nom }} </strong>
+
           </figure> 
+
           <p>   {{ publication.description }}<br></p>
 
           <strong>Prix: </strong>{{ publication.prix }} TND<br>
+          <strong>Region: </strong>{{ publication.region }} <br>
             <strong>Sous-catégorie: </strong>{{ getSousCategorieById(publication.sousCategorieId) }}       
           <h4 class="fw-700 text-grey-900 font-xssss mt-1">
           {{ getPrestataireById(publication.prestataireId)?.nom }}

@@ -59,7 +59,11 @@ export class PostviewComponent implements OnInit {
     this.http.get<Publication[]>('http://localhost:3000/publications').subscribe((data) => {
       if (this.isAdmin) {
         this.publications = data;
+      } else if (this.isPrestataire) {
+        // Afficher uniquement les publications du prestataire connecté
+        this.publications = data.filter(pub => pub.prestataireId === this.currentUserId);
       } else {
+        // Pour les clients : seulement les publications validées
         this.publications = data.filter(pub => pub.statut === 'active');
       }
       this.isLoading = false;
@@ -68,7 +72,7 @@ export class PostviewComponent implements OnInit {
     this.http.get<Utilisateur[]>('http://localhost:3000/utilisateurs').subscribe((data) => {
       this.utilisateurs = data;
       this.prestataires = data.filter(user => user.role === 'prestataire');
-    });
+    }); 
     
     this.http.get<SousCategorie[]>('http://localhost:3000/souscategories').subscribe((data) => {
       this.sousCategories = data;
@@ -167,5 +171,22 @@ export class PostviewComponent implements OnInit {
   getAvisByPublication(pubId: string): Avis[] {
     return this.avisList.filter(a => a.id_publication === pubId);
 }
+
+showPopup = false;
+selectedPrestataireId: string | null = null;
+
+ouvrirPopup() {
+  this.selectedPrestataireId = this.currentUserId; // par exemple, si tu veux ouvrir le popup pour l'utilisateur connecté
+  this.showPopup = true;
+}
+
+fermerPopup() {
+  this.showPopup = false;
+}
+showContactModal = false;
+contactEmail: string = '';
+contactMessage: string = '';
+contactPhoneNumber: string = '';
+selectedPrestataireName: string = ''; // ou récupéré dynamiquement selon le prestataire
 
 }

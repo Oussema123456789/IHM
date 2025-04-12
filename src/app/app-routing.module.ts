@@ -41,14 +41,20 @@ const routes: Routes = [
   { 
     path: 'Categorie', 
     component: CategorieComponent, 
+    canActivate: [AuthGuard, AdminGuard] 
+
   },
   { 
     path: 'Post', 
     component: PostComponent, 
+    canActivate: [AuthGuard] 
+
   },
   { 
     path: 'userpage/:id', 
     component: UserpageComponent, 
+    canActivate: [AuthGuard] 
+
   },
   { 
     path: 'Listprestataire', 
@@ -58,24 +64,37 @@ const routes: Routes = [
   { 
     path: 'profile', 
     component: ProfileComponent, 
-    canActivate: [AuthGuard, PrestataireGuard] 
+    canActivate: [AuthGuard] 
   },
   {
     path: 'ajouter-publication',  // :id permet de capturer l'ID du prestataire
     component: AjouterPublicationComponent,
+    
+    canActivate: [AuthGuard,PrestataireGuard] 
   },
-  { path: 'profile/:id', component: ProfileComponent },
+  { path: 'profile/:id', component: ProfileComponent ,
+    canActivate: [AuthGuard] 
+
+  },
+  
   { 
     path: 'addCategorie', 
     component: AddCategorieComponent, 
+    canActivate: [AuthGuard,AdminGuard] 
+
   },
-  { path: 'categories/:id/sous-categories', component: SousCategorieComponent},
-  { path: 'ajouter-sous-categorie/:id', component: AjouterSousCategorieComponent  },
-  { path: 'modifier-sous-categorie/:id', component: ModifierSousCategorieComponent }
+  { path: 'categories/:id/sous-categories', component: SousCategorieComponent,
+    canActivate: [AuthGuard,AdminGuard] },
+  { path: 'ajouter-sous-categorie/:id', component: AjouterSousCategorieComponent ,
+    canActivate: [AuthGuard,AdminGuard]  },
+  { path: 'modifier-sous-categorie/:id', component: ModifierSousCategorieComponent ,
+    canActivate: [AuthGuard,AdminGuard] }
   ,
   { 
     path: 'updateCategorie/:id', 
     component: UpdateCategorieComponent, 
+    canActivate: [AuthGuard, AdminGuard] 
+
     
   },
   { 
@@ -85,42 +104,56 @@ const routes: Routes = [
   },
   { 
     path: 'Postview', 
-    component: PostviewComponent, 
+    component: PostviewComponent
+    ,
+    canActivate: [AuthGuard,PrestataireGuard]  
   }, { 
     path: 'modifier-publication/:id', 
     component: ModifierPublicationComponent, 
+    
+    canActivate: [AuthGuard,PrestataireGuard] 
   },
    { 
     path: 'admin-validations', 
     component: AdminValidationsComponent, 
+    canActivate: [AuthGuard,AdminGuard] 
+
   },
   
    { 
     path: 'admin-validations/:id', 
     component: AdminValidationsComponent, 
+    canActivate: [AuthGuard,AdminGuard] 
+
   },
   { 
     path: 'welcomeclient', 
     component: WelcomeclientComponent, 
   },
-  { path: 'utilisateur_list', component: UtilisateurListComponent },
+  { path: 'utilisateur_list', component: UtilisateurListComponent ,    canActivate: [AuthGuard,AdminGuard] 
+  },
 
 
   {
     path: 'utilisateur/ajouter',
-    component: AjouterUtilisateurComponent
+    component: AjouterUtilisateurComponent,
+    canActivate: [AuthGuard,AdminGuard] 
+
   },
   {
     path: 'utilisateur/modifier/:id',
-    component: ModifierUtilisateurComponent
+    component: ModifierUtilisateurComponent,
+    canActivate: [AuthGuard,AdminGuard] 
   },
   {
     path: 'prestataire/signaler/:id',
-    component: SignalerPrestataireComponent
+    component: SignalerPrestataireComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path: 'prestataire/bloquer/:id',
-    component: BloquerPrestataireComponent
+    component: BloquerPrestataireComponent,
+    canActivate: [AuthGuard,AdminGuard] 
   },
 
 
@@ -139,7 +172,7 @@ const routes: Routes = [
   { path: 'unauthorized', component: UnauthorizedComponent },
   
   // Redirige les utilisateurs vers la page de login par défaut
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'welcomeclient' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

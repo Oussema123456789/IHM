@@ -81,4 +81,7 @@ export class AjouterSousCategorieComponent implements OnInit {
     const cat = this.categories.find(c => c.id === id);
     return cat ? cat.nomcat : '';
   }
+  retour(): void {
+    this.location.back(); // Fonction pour revenir à la page précédente
+  }
 }

@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
 
     // Mettre à jour les notifications toutes les 30 secondes (optionnel)
     setInterval(() => this.loadNotifications(), 30000);
+    
   }
 
   // Charger les notifications de l'utilisateur

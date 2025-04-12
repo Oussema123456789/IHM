@@ -20,6 +20,7 @@ export class LoginComponent {
         // Après une connexion réussie, rediriger selon le rôle
         if (user.role === 'admin') {
           this.router.navigate(['/admin']);
+          
         } else if (user.role === 'client') {
           this.router.navigate(['/Post']);
         } else {

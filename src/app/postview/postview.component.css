@@ -1,0 +1,93 @@
+/* Style global pour centrer le contenu */
+.main-content {
+  display: flex;
+  justify-content: center;  /* Centre le contenu horizontalement */
+  align-items: center;      /* Centre le contenu verticalement */
+  min-height: 100vh;        /* Assure que le contenu occupe toute la hauteur de la fenêtre */
+  padding: 20px;            /* Un peu d'espace autour du contenu */
+  box-sizing: border-box;   /* Assure que le padding ne dépasse pas le contenu */
+}
+
+/* Pour le conteneur du côté gauche */
+.middle-sidebar-bottom {
+  display: flex;
+  justify-content: center;
+  width: 100%;              /* Permet de prendre toute la largeur disponible */
+  align-items: flex-start;  /* Aligne le contenu vers le haut */
+  padding: 20px 0;          /* Ajoute un peu d'espace en haut et en bas */
+}
+
+/* Barre de recherche centrée */
+/* Barre de recherche centrée */
+.card.w-100.p-3.mb-8.shadow-xs.border.rounded {
+  width: 100%;
+  max-width: 500px;         /* Définit une largeur maximale pour la recherche */
+  margin: 0 auto;
+  padding-top: 50px;        /* Diminuer le padding pour que la recherche soit plus bas */
+  margin-top: 50px;         /* Augmenter l'espace entre la recherche et les autres éléments */
+}
+
+/* Le bouton d'ajout de publication */
+button {
+  margin: 10px auto;        /* Centre le bouton horizontalement */
+  display: block;
+}
+
+/* Centrer la popup modale */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;  /* Centre horizontalement */
+  align-items: center;      /* Centre verticalement */
+  z-index: 9999;
+  height: 100vh;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 900px;         /* Limite la largeur de la popup */
+  position: relative;
+  padding: 20px;
+  max-height: 80vh;         /* Limite la hauteur de la popup */
+  overflow-y: auto;         /* Permet de faire défiler le contenu si nécessaire */
+  box-sizing: border-box;   /* Assure que la taille inclut le padding */
+}
+
+/* Style pour les formulaires et boutons */
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+textarea, input, select {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+/* Boutons avec un style cohérent et centré */
+button[type="submit"] {
+  align-self: center;       /* Centre le bouton d'envoi */
+  background-color: #29ADB5;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Ajout d'un effet au survol */
+button[type="submit"]:hover {
+  background-color: #28a745; /* Change la couleur au survol */
+  transition: background-color 0.3s ease;
+}

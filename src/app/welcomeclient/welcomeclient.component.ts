@@ -6,6 +6,7 @@ import { SousCategorie } from 'src/Model/SousCategorie';
 import { Utilisateur } from 'src/Model/Utilisateur';
 import { Avis } from 'src/Model/Avis';
 import { AvisService } from 'src/Service/avis.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-welcomeclient',
@@ -18,7 +19,14 @@ export class WelcomeclientComponent implements OnInit {
   prestataires: any[] = [];
   sousCategories: SousCategorie[] = [];
   utilisateurs: Utilisateur[] = [];
-  avisList: Avis[] = [];  // Liste des avis
+  avisList: Avis[] = [];
+
+  regions: string[] = [
+    'Tunis', 'Ariana', 'Ben Arous', 'Manouba', 'Nabeul', 'Zaghouan',
+    'Bizerte', 'Béja', 'Jendouba', 'Kef', 'Siliana', 'Sousse',
+    'Monastir', 'Mahdia', 'Kairouan', 'Kasserine', 'Sidi Bouzid',
+    'Sfax', 'Gabès', 'Medenine', 'Tataouine', 'Tozeur', 'Kebili', 'Gafsa'
+  ];
 
   isLoading = true;
   isPrestataire = false;
@@ -26,18 +34,15 @@ export class WelcomeclientComponent implements OnInit {
   isClient = false;
   currentUserId: string = '';
 
-  // Recherche avancée
   filter = {
     prestataireId: '',
     sousCategorieId: '',
+    region: '',
     prixMin: 0,
-    prixMax:10000000
+    prixMax: 10000000
   };
 
-  // Recherche simple
   searchTerm: string = '';
-
-  // Avis
   selectedNote: { [key: string]: number } = {};
   commentaireAvis: { [key: string]: string } = {};
 
@@ -57,35 +62,32 @@ export class WelcomeclientComponent implements OnInit {
     }
 
     this.http.get<Publication[]>('http://localhost:3000/publications').subscribe((data) => {
-      if (this.isAdmin) {
-        this.publications = data;
-      } else {
-        this.publications = data.filter(pub => pub.statut === 'active');
-      }
+      this.publications = this.isAdmin ? data : data.filter(pub => pub.statut === 'active');
       this.isLoading = false;
     });
-    
+
     this.http.get<Utilisateur[]>('http://localhost:3000/utilisateurs').subscribe((data) => {
       this.utilisateurs = data;
       this.prestataires = data.filter(user => user.role === 'prestataire');
     });
-    
+
     this.http.get<SousCategorie[]>('http://localhost:3000/souscategories').subscribe((data) => {
       this.sousCategories = data;
     });
 
-    // Charger les avis
     this.avisService.getAvis().subscribe((data) => {
       this.avisList = data;
     });
   }
+
   redirectToLogin() {
     this.router.navigate(['/login']);
   }
+
   redirectToRegister() {
     this.router.navigate(['/register']);
   }
-  // Utilitaire
+
   getPrestataireById(id: string): Utilisateur | undefined {
     return this.utilisateurs.find(u => u.id?.toString() === id);
   }
@@ -111,7 +113,6 @@ export class WelcomeclientComponent implements OnInit {
     }
   }
 
-  // Validation pour admin
   validerPublication(id: string): void {
     this.http.patch(`http://localhost:3000/publications/${id}`, { statut: 'active' }).subscribe(() => {
       const updated = this.publications.find(pub => pub.id === id);
@@ -119,7 +120,6 @@ export class WelcomeclientComponent implements OnInit {
     });
   }
 
-  // Enregistrement d'un avis
   enregistrerAvis(publicationId: string): void {
     const note = this.selectedNote[publicationId];
     const commentaire = this.commentaireAvis[publicationId];
@@ -138,7 +138,6 @@ export class WelcomeclientComponent implements OnInit {
     });
   }
 
-  // Filtrage combiné : simple + avancé
   filteredPublications(): Publication[] {
     const rawTerm = this.searchTerm.trim().toLowerCase();
     const terms = rawTerm ? rawTerm.split(/\s+/) : [];
@@ -147,8 +146,10 @@ export class WelcomeclientComponent implements OnInit {
       const prixValide = pub.prix >= this.filter.prixMin && pub.prix <= this.filter.prixMax;
       const sousCatValide = this.filter.sousCategorieId ? pub.sousCategorieId === this.filter.sousCategorieId : true;
       const prestValide = this.filter.prestataireId ? pub.prestataireId === this.filter.prestataireId : true;
+      const regionValide = this.filter.region ? pub.region === this.filter.region : true;
+      console.log(pub.region);
 
-      if (!prixValide || !sousCatValide || !prestValide) return false;
+      if (!prixValide || !sousCatValide || !prestValide || !regionValide) return false;
 
       if (terms.length === 0) return true;
 
@@ -157,21 +158,17 @@ export class WelcomeclientComponent implements OnInit {
       const sousCategorie = this.getSousCategorieById(pub.sousCategorieId)?.toLowerCase() || '';
       const description = pub.description?.toLowerCase() || '';
       const prix = pub.prix?.toString() || '';
-
-      const fullContent = `${nomPrestataire} ${sousCategorie} ${description} ${prix}`;
+      const region = pub.region?.toLowerCase() || '';
+      const fullContent = `${nomPrestataire} ${sousCategorie} ${description} ${prix} ${region}`;
       return terms.every(term => fullContent.includes(term));
     });
   }
-  getUtilisateurById(id: string | number): Utilisateur | undefined {
-  // Ensure the 'id' is converted to a string before comparing
-  const idStr = id.toString();
-  return this.utilisateurs.find(u => u.id?.toString() === idStr);
-}
 
-  // Récupérer les avis pour une publication
   getAvisByPublication(pubId: string): Avis[] {
     return this.avisList.filter(a => a.id_publication === pubId);
-}
+  }
 
+  getUtilisateurById(id: string | number): Utilisateur | undefined {
+    return this.utilisateurs.find(u => u.id?.toString() === id.toString());
+  }
 }
-

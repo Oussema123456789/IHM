@@ -1,52 +1,145 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <div class="nav-header bg-white shadow-xs border-0">
     <div class="nav-top d-flex justify-content-between w-100 align-items-center">
         <!-- Logo -->
-        <a routerLink="/home" class="d-flex align-items-center">
+        <a class="d-flex align-items-center">
             <i class="feather-zap text-success display1-size me-2 ms-0"></i>
             <span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">AlloService</span>
         </a>
     
         <!-- Recherche -->
-            <form class="header-search ms-4">
-                <div class="form-group mb-0 icon-input position-relative">
-                    <i class="feather-search font-sm text-grey-400 position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                    <input type="text" placeholder="Search..." class="bg-grey border-0 lh-32 pt-2 pb-2 ps-5 pe-3 rounded-xl w-100">
+           
+    <div class="p-2 text-center ms-3 position-relative dropdown-menu-icon menu-icon cursor-pointer">
+                <i class="feather-settings  d-inline-block font-xl text-current"></i>
+                <div class="dropdown-menu-settings switchcolor-wrap">
+                    <h4 class="fw-700 font-sm mb-4">Settings</h4>
+                    <h6 class="font-xssss text-grey-500 fw-700 mb-3 d-block">Choose Color Theme</h6>
+                    <ul>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="red" checked=""><i class="ti-check"></i>
+                                <span class="circle-color bg-red" style="background-color: #ff3b30;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="green"><i class="ti-check"></i>
+                                <span class="circle-color bg-green" style="background-color: #4cd964;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="blue" checked=""><i class="ti-check"></i>
+                                <span class="circle-color bg-blue" style="background-color: #132977;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="pink"><i class="ti-check"></i>
+                                <span class="circle-color bg-pink" style="background-color: #ff2d55;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="yellow"><i class="ti-check"></i>
+                                <span class="circle-color bg-yellow" style="background-color: #ffcc00;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="orange"><i class="ti-check"></i>
+                                <span class="circle-color bg-orange" style="background-color: #ff9500;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="gray"><i class="ti-check"></i>
+                                <span class="circle-color bg-gray" style="background-color: #8e8e93;"></span>
+                            </label>
+                        </li>
+
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="brown"><i class="ti-check"></i>
+                                <span class="circle-color bg-brown" style="background-color: #D2691E;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="darkgreen"><i class="ti-check"></i>
+                                <span class="circle-color bg-darkgreen" style="background-color: #228B22;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="deeppink"><i class="ti-check"></i>
+                                <span class="circle-color bg-deeppink" style="background-color: #FFC0CB;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="cadetblue"><i class="ti-check"></i>
+                                <span class="circle-color bg-cadetblue" style="background-color: #5f9ea0;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="darkorchid"><i class="ti-check"></i>
+                                <span class="circle-color bg-darkorchid" style="background-color: #9932cc;"></span>
+                            </label>
+                        </li>
+                    </ul>
+                    
+                    <div class="card bg-transparent-card border-0 d-block mt-3">
+                        <h4 class="d-inline font-xssss mont-font fw-700">Header Background</h4>
+                        <div class="d-inline float-right mt-1">
+                            <label class="toggle toggle-menu-color"><input type="checkbox"><span class="toggle-icon"></span></label>
+                        </div>
+                    </div>
+                    <div class="card bg-transparent-card border-0 d-block mt-3">
+                        <h4 class="d-inline font-xssss mont-font fw-700">Menu Position</h4>
+                        <div class="d-inline float-right mt-1">
+                            <label class="toggle toggle-menu"><input type="checkbox"><span class="toggle-icon"></span></label>
+                        </div>
+                    </div>
+                    <div class="card bg-transparent-card border-0 d-block mt-3">
+                        <h4 class="d-inline font-xssss mont-font fw-700">Dark Mode</h4>
+                        <div class="d-inline float-right mt-1">
+                            <label class="toggle toggle-dark"><input type="checkbox"><span class="toggle-icon"></span></label>
+                        </div>
+                    </div>
+                    
                 </div>
-            </form>
-    
+            </div>
         <!-- Notifications -->
-        <div class="dropdown ms-auto position-relative">
-            <a class="p-2 text-center menu-icon" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="feather-bell font-xl text-current"></i>
-                <!-- Badge de notification rouge si il y a des notifications -->
-                <span *ngIf="notificationsCount > 0" class="badge bg-danger position-absolute top-0 start-100 translate-middle">{{ notificationsCount }}</span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <!-- Notifications List -->
-                <li *ngFor="let notification of notifications">
-                    <a class="dropdown-item" (click)="redirectToValidation(notification)">
-                        {{ notification.message }}
-                    </a>
-                </li>
-                <!-- No Notifications Available -->
-                <li *ngIf="notifications.length === 0">
-                    <a class="dropdown-item text-muted">Aucune notification</a>
-                </li>
-            </ul>
-        </div>
-    
+        
         <!-- Avatar and User Menu -->
-        <div *ngIf="user" class="dropdown ms-3">
-            <a href="#" class="dropdown-toggle d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown">
-                <img [src]="user?.avatarUrl" alt="user" class="w30 h30 rounded">
-                <span class="ms-2 fw-600">{{ user.nom }}</span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <li><a class="dropdown-item" [routerLink]="['/profile', user?.id]">Profile</a></li>
-                <li><a class="dropdown-item" routerLink="/settings">Settings</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#" (click)="logout()">Logout</a></li>
-            </ul>
-        </div>
+        <div *ngIf="user" class="dropdown ms-2">
+  <a  class="dropdown-toggle d-flex align-items-center text-decoration-none" id="userDropdown" data-bs-toggle="dropdown" style="padding: 0.2rem;">
+    <img [src]="user?.avatarUrl" alt="user" class="rounded-circle" style="width: 50px; height: 50px; object-fit:initial">
+    <span class="ms-1 fs-6 text-dark" style="font-size: 0.875rem;">{{ user.nom }}</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded" aria-labelledby="userDropdown" style="font-size: 0.75rem; width: 100%;">
+    <li>
+      <a class="dropdown-item d-flex align-items-center" [routerLink]="['/profile', user?.id]" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">
+        <i class="fas fa-user me-2 text-primary" style="font-size: 2rem;"></i> Profile
+      </a>
+    </li>
+    <li *ngIf="user?.role === 'prestataire'">
+      <a class="dropdown-item d-flex align-items-center" routerLink="/Postview" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">
+        <i class="fas fa-briefcase me-2 text-success" style="font-size: 2rem;"></i> Mes publications
+      </a>
+    </li>
+    <li><hr class="dropdown-divider" style="margin: 0.2rem 0;"></li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center text-danger"  (click)="logout()" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">
+        <i class="fas fa-sign-out-alt me-2" style="font-size: 2rem;"></i> Logout
+      </a>
+    </li>
+  </ul>
+</div>
+
+          
     </div>
 </div>

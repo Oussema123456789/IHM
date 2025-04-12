@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/Service/profile.service';
 import { CloudinaryService } from 'src/Service/cloudinary.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common'; // <- Import pour revenir en arrière
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +24,8 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService,
     private cloudinaryService: CloudinaryService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location // <- Ajout du service Location
   ) {}
 
   ngOnInit(): void {
@@ -69,12 +71,16 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+  retour(): void {
+    this.location.back(); // <- Fonction pour revenir à la page précédente
+  }
 
   onSaveProfile(): void {
     const userId = this.route.snapshot.paramMap.get('id') || '';
     this.profileService.updateProfile(userId, this.user).subscribe({
       next: (data) => {
         console.log('Profil mis à jour avec succès', data);
+        this.router.navigate(['/Post']);
       },
       error: (err) => {
         console.error("Erreur lors de la mise à jour du profil :", err);

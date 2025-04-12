@@ -1,44 +1,32 @@
 <app-navbar></app-navbar>
-<app-ajouter-publication *ngIf="isPrestataire"></app-ajouter-publication>
 
 <div class="main-content right-chat-active">
   <div class="middle-sidebar-bottom">
     <div class="middle-sidebar-left">
 
       <!-- Barre de recherche simple -->
-      <div class="card w-100 p-3 mb-4 shadow-xs border rounded">
-        <input type="text" class="form-control" placeholder="Recherche simple" [(ngModel)]="searchTerm">
-      </div>
+<div class="card w-100 p-3 mb-8 shadow-xs border rounded" style="padding-top: 50px;">
+  <input type="text" class="form-control" placeholder="Recherche simple" [(ngModel)]="searchTerm">
+</div>
 
-      <!-- Barre de recherche avancée -->
-      <div class="card w-100 p-4 mb-4 shadow-xs border rounded">
-        <h5>Recherche avancée</h5>
-        <div class="row">
-          <div class="col-md-4 mb-2">
-            <label>Prestataire</label>
-            <select class="form-control" [(ngModel)]="filter.prestataireId">
-              <option value="">Tous</option>
-              <option *ngFor="let u of prestataires" [value]="u.id">{{ u.nom }}</option>
-            </select>
-          </div>
-          <div class="col-md-4 mb-2">
-            <label>Sous-catégorie</label>
-            <select class="form-control" [(ngModel)]="filter.sousCategorieId">
-              <option value="">Toutes</option>
-              <option *ngFor="let sc of sousCategories" [value]="sc.id">{{ sc.nomscat }}</option>
-            </select>
-          </div>
-          <div class="col-md-2 mb-2">
-            <label>Prix min</label>
-            <input type="number" class="form-control" [(ngModel)]="filter.prixMin">
-          </div>
-          <div class="col-md-2 mb-2">
-            <label>Prix max</label>
-            <input type="number" class="form-control" [(ngModel)]="filter.prixMax">
-          </div>
+
+      <div style="text-align: right;">
+        <button *ngIf="isPrestataire"
+                (click)="ouvrirPopup()"
+                style="background-color: #29ADB5; color: white; font-weight: bold; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: inline-flex; align-items: center;">
+          <i class="fa fa-plus" style="margin-right: 8px;"></i>
+          Ajouter une publication
+        </button>
+      </div>
+      
+
+      <div *ngIf="showPopup" class="modal-overlay">
+        <div class="modal-content">
+          <button class="close-btn" (click)="fermerPopup()" style="">        ×</button>
+          <app-ajouter-publication></app-ajouter-publication>
         </div>
       </div>
-
+      
       <!-- Loader -->
       <div class="preloader-wrap p-3" *ngIf="isLoading">
         <div class="box shimmer">
@@ -87,6 +75,7 @@
           <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">
             {{ publication.description }}<br>
             <strong>Prix: </strong>{{ publication.prix }} TND<br>
+            <strong>Region: </strong>{{ publication.region }}<br>
             <strong>Sous-catégorie: </strong>{{ getSousCategorieById(publication.sousCategorieId) }}
           </p>
         </div>

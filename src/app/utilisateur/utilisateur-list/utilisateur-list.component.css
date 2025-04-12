@@ -80,3 +80,7 @@ body, html {
   height: 100vh;
   z-index: 1000;
 }
+.btn-current:hover {
+  background-color: #29ADB5;
+  color: white;
+}

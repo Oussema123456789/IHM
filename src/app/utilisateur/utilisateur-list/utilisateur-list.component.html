@@ -13,27 +13,43 @@
     <table class="table table-bordered table-striped align-middle shadow-sm">
       <thead class="table-dark">
         <tr>
-          <th>ID</th>
           <th>Email</th>
           <th>Nom</th>
           <th>Rôle</th>
+          <th>statut</th>
+
           <th class="text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let utilisateur of utilisateurs">
-          <td>{{ utilisateur.id }}</td>
           <td>{{ utilisateur.email }}</td>
           <td>{{ utilisateur.nom }}</td>
           <td>{{ utilisateur.role }}</td>
+          <td>{{ utilisateur.bloque ? 'Bloqué' : 'Non bloqué' }}</td>
+
           <td class="text-center">
-            <a [routerLink]="['/utilisateur/modifier', utilisateur.id]" class="btn btn-oussema btn-sm me-2">
-              Modifier
-            </a>
-            <button (click)="supprimerUtilisateur(utilisateur.id)" class="btn btn-danger btn-sm">
-              Supprimer
-            </button>
+            <div class="d-flex justify-content-center gap-2 flex-wrap">
+              <a [routerLink]="['/prestataire/bloquer', utilisateur.id]"
+   class="btn btn-current btn-sm"
+   [class.disabled]="utilisateur.role !== 'prestataire' || utilisateur.bloque"
+   [attr.aria-disabled]="utilisateur.role !== 'prestataire' || utilisateur.bloque"
+   [style.pointer-events]="(utilisateur.role !== 'prestataire' || utilisateur.bloque) ? 'none' : 'auto'">
+  Bloquer
+</a>
+          
+              <a [routerLink]="['/utilisateur/modifier', utilisateur.id]"
+                 class="btn btn-primary btn-sm">
+                Modifier
+              </a>
+          
+              <button (click)="supprimerUtilisateur(utilisateur.id)"
+                      class="btn btn-danger btn-sm">
+                Supprimer
+              </button>
+            </div>
           </td>
+          
         </tr>
       </tbody>
     </table>

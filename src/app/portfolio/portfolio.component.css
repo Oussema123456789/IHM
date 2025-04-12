@@ -1,0 +1,11 @@
+/* Style global pour centrer le contenu */
+.main-content {
+    display: flex;
+    justify-content: center;  /* Centre le contenu horizontalement */
+    align-items: center;      /* Centre le contenu verticalement */
+    min-height: 100vh;        /* Assure que le contenu occupe toute la hauteur de la fenêtre */
+    padding: 20px;            /* Un peu d'espace autour du contenu */
+    box-sizing: border-box;
+    padding-top: 100px;   /* Assure que le padding ne dépasse pas le contenu */
+  }
+  

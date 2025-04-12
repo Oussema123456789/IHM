@@ -34,6 +34,9 @@
         <strong>Date :</strong> {{ pub.date_pub | date: 'short' }}
       </p>
       <p class="card-text mb-2">
+        <strong>Region :</strong> {{ pub.region }}
+      </p>
+      <p class="card-text mb-2">
         <strong>Sous-catégorie :</strong> {{ getNomSousCategorie(pub.sousCategorieId) }}
       </p>
 

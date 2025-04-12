@@ -1,2 +1,79 @@
-<app-navbar></app-navbar>
 <app-leftbar></app-leftbar>
+<app-navbar></app-navbar>
+        <!-- main content -->
+        <div class="main-content bg-white right-chat-active">
+            
+            <div class="middle-sidebar-bottom">
+                <div class="middle-sidebar-left">
+                    <div class="row">
+                        <div class="col-xl-12 ">
+                            <div class="row">
+                                <div class="col-lg-20">
+                                    <div class="card w-100 border-0 shadow-none p-5 rounded-xxl bg-lightblue2 mb-3">
+                                        <div class="row">
+                                            <div class="col-lg-1">
+                                                <img src="../../assets/images/adminp.png" alt="image" style="height: 300px;width: 300px;">
+                                            </div>
+                                            <div class="col-lg-6 ps-lg-5" style="margin-left: 250px;margin-top: 50px;">
+                                                <h2 class="display1-size d-block mb-2 text-grey-9000 fw-700">
+                                                    <span class="font-xssss fw-600 text-grey-500 d-block mb-2 ms-1">Welcome back Admin</span>  
+                                                Hi, {{currentUser?.nom}}</h2>
+                                                <p class="font-xssss fw-500 text-grey-500 lh-26">
+                                                    Cet espace est dédié à la gestion complète de la plateforme. Visualisez les statistiques clés, organisez les catégories, gérez les publications des prestataires et assurez un bon fonctionnement du système en un seul endroit.
+                                                  </p>
+                                                                                                  <div class="card-body p-2 border-0">
+                                                    <div class="row">
+                                                        <div class="col-2 p-0">
+                                                            
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="col-lg-3 pe-2">
+                                    <div class="card w-100 border-0 shadow-none p-4 rounded-xxl mb-3" style="background-color: #e5f6ff;">
+                                        <div class="card-body d-flex p-0">
+                                            <i class="btn-round-lg d-inline-block me-3 bg-primary-gradiant feather-user font-md text-white"></i>
+                                            <h4 class="text-primary font-xl fw-700">{{clientsCount }}<span class="fw-500 mt-0 d-block text-grey-500 font-xssss">Clients</span></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 pe-2 ps-2">
+                                    <div class="card w-100 border-0 shadow-none p-4 rounded-xxl mb-3" style="background-color: #f6f3ff;">
+                                        <div class="card-body d-flex p-0">
+                                            <i class="btn-round-lg d-inline-block me-3 bg-blue-gradiant feather-user font-md text-white"></i>
+                                            <h4 class="text-secondary font-xl fw-700"> {{ prestatairesCount }}  <span class="fw-500 mt-0 d-block text-grey-500 font-xssss">Prestataires</span></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 pe-2 ps-2">
+                                    <div class="card w-100 border-0 shadow-none p-4 rounded-xxl mb-3" style="background-color: #e2f6e9;">
+                                        <div class="card-body d-flex p-0">
+                                            <i class="btn-round-lg d-inline-block me-3 bg-success feather-command font-md text-white"></i>
+                                            <h4 class="text-success font-xl fw-700">{{categories.length}}<span class="fw-500 mt-0 d-block text-grey-500 font-xssss">categories</span></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 ps-2">
+                                    <div class="card w-100 border-0 shadow-none p-4 rounded-xxl mb-3" style="background-color: #fff0e9;">
+                                        <div class="card-body d-flex p-0">
+                                            <i class="btn-round-lg d-inline-block me-3 bg-warning feather-shopping-bag font-md text-white"></i>
+                                            <h4 class="text-warning font-xl fw-700">{{publications.length}}<span class="fw-500 mt-0 d-block text-grey-500 font-xssss">Publications</span></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+                        </div>               
+
+                    </div>
+                </div>
+                 
+            </div>            
+        </div>
+        <!-- main content -->

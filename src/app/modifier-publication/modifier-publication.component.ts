@@ -19,6 +19,8 @@ export class ModifierPublicationComponent implements OnInit {
     titre: '',
     description: '',
     prix: 0,
+    region: '', // ← Ajouté ici
+
     date_pub: '',
     sousCategorieId: '',
     prestataireId: '',
@@ -27,7 +29,15 @@ export class ModifierPublicationComponent implements OnInit {
 
   sousCategories: SousCategorie[] = [];
   selectedSousCategorie: string = '';
-
+  regions: string[] = [
+    'Tunis', 'Ariana', 'Ben Arous', 'Manouba',
+    'Nabeul', 'Zaghouan', 'Bizerte', 'Béja',
+    'Jendouba', 'Kef', 'Siliana', 'Sousse',
+    'Monastir', 'Mahdia', 'Kairouan', 'Kasserine',
+    'Sidi Bouzid', 'Sfax', 'Gabès', 'Medenine',
+    'Tataouine', 'Tozeur', 'Kebili', 'Gafsa'
+  ];
+  
   constructor(
     private publicationService: PublicationService,
     private sousCategorieService: SousCategorieService,

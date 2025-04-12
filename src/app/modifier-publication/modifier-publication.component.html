@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<app-leftbar></app-leftbar>
+
 <div class="main-content right-chat-active">
     <div class="middle-sidebar-bottom">
       <div class="middle-sidebar-left">
@@ -8,7 +8,7 @@
             <!-- Card de formulaire de modification de publication -->
             <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
               <div class="card-body p-0">
-                <a href="#" class="font-xssss fw-600 text-grey-500 card-body p-0 d-flex align-items-center">
+                <a href="/Postview" class="font-xssss fw-600 text-grey-500 card-body p-0 d-flex align-items-center">
                   <i class="btn-round-sm font-xs text-primary feather-edit-3 me-2 bg-greylight"></i> Modifier la Publication
                 </a>
               </div>
@@ -37,6 +37,15 @@
                          [(ngModel)]="publication.prix" 
                          name="prix" 
                          required>
+                  <select class="form-control mb-3 font-xssss fw-500 border-light-md theme-dark-bg" 
+                          [(ngModel)]="publication.region" 
+                          name="region" 
+                          required>
+                    <option value="">Sélectionner une région</option>
+                    <option *ngFor="let region of regions" [value]="region">
+                      {{ region }}
+                    </option>
+                  </select>
                   <select class="form-control mb-3 font-xssss fw-500 border-light-md theme-dark-bg" 
                           [(ngModel)]="selectedSousCategorie" 
                           name="sousCategorie" 
